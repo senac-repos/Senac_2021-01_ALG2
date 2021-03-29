@@ -8,8 +8,6 @@ Construir uma função para imprimir um dos produtos da lista e uma função par
 """
 
 # Imports
-import time
-
 from Atividades.Classes.MetodosAuxiliares import MetodosAuxiliares
 
 metodos = MetodosAuxiliares
@@ -34,16 +32,6 @@ def menu():
     \033[1;32m2.\033[0;0m Remover um produto específico
 
 Escolha a opção desejada: ''')
-
-
-def opcao_invalida():
-    """
-    Método utilizado para informar ao usuário que a opção digitada no menu é inválida
-
-    :return: retorna ao usuário que a opção informada no menu é inválida
-    """
-    metodos.print_mensagem('\033[1;31mOpção inválida.\033[0;0m')
-    time.sleep(1)
 
 
 # Métodos referentes as opções do menu
@@ -135,4 +123,4 @@ while True:
     elif opcao == '2':
         exibir_produtos_decidir_acao('REMOÇÃO DE PRODUTO', 'remover')
     else:
-        opcao_invalida()
+        metodos.opcao_invalida()

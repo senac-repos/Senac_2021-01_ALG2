@@ -1,4 +1,5 @@
 import os
+import time
 
 
 class MetodosAuxiliares:
@@ -43,3 +44,22 @@ class MetodosAuxiliares:
         sistema
         """
         return input('Pressione \033[;1mENTER\033[0;0m para continuar.')
+
+    @staticmethod
+    def opcao_invalida():
+        """
+        Método utilizado para informar ao usuário que a opção digitada no menu é inválida
+
+        :return: retorna ao usuário que a opção informada no menu é inválida
+        """
+        print('\n\033[1;31mOpção inválida.\033[0;0m')
+        time.sleep(1)
+
+    @staticmethod
+    def inserir_nova_linha():
+        """
+        Método utilizado para adicionar uma linha em branco na execução do código
+
+        :return: retorna ao usuário uma linha em branco
+        """
+        return print()
