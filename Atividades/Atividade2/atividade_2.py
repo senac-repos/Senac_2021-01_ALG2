@@ -7,13 +7,13 @@ o método imprimir, que imprime na tela os valores de todos os atributos da sua 
 """
 
 # Imports
-from Atividades.Classes.AlunoEnsinoMedio import AlunoEnsinoMedio
-from Atividades.Classes.AlunoGraduacao import AlunoGraduacao
-from Atividades.Classes.MetodosAuxiliares import MetodosAuxiliares
+from Atividades.MetodosAuxiliares import Auxiliares
+from Classes.AlunoEnsinoMedio import AlunoEnsinoMedio
+from Classes.AlunoGraduacao import AlunoGraduacao
 
 grad = AlunoGraduacao
 ens_med = AlunoEnsinoMedio
-metodos = MetodosAuxiliares
+metodos = Auxiliares
 
 
 def menu():
@@ -45,7 +45,7 @@ def imprimir_aluno_graduacao(codigo, nome, matricula, semestre):
     aluno_graduacao = grad(codigo, nome, matricula, semestre)
     aluno_graduacao.imprimir()
 
-    metodos.print_mensagem(metodos.pressionar_enter())
+    metodos.pressionar_enter()
 
 
 def cadastrar_aluno_ens_medio():
@@ -65,7 +65,7 @@ def imprimir_aluno_ens_medio(codigo, nome, matricula, ano):
     aluno_ens_med = ens_med(codigo, nome, matricula, ano)
     aluno_ens_med.imprimir()
 
-    metodos.print_mensagem(metodos.pressionar_enter())
+    metodos.pressionar_enter()
 
 
 # Programa

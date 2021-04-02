@@ -1,13 +1,13 @@
-from Atividades.Classes.Aluno import Aluno
+from Atividades.Atividade2.Classes.Aluno import Aluno
 
 
-class AlunoGraduacao(Aluno):
-    def __init__(self, codigo, nome, matricula, semestre):
+class AlunoEnsinoMedio(Aluno):
+    def __init__(self, codigo, nome, matricula, ano):
         Aluno.__init__(self, codigo, nome, matricula)
-        self.semestre = semestre
+        self.ano = ano
 
     def imprimir(self):
         print(f'\tCódigo do aluno: {self.codigo}'
               f'\n\tNome: {self.nome}'
               f'\n\tMatrícula: {self.matricula}'
-              f'\n\tSemestre: {self.semestre}')
+              f'\n\tAno: {self.ano}')

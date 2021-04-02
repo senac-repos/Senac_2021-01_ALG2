@@ -8,9 +8,9 @@ Construir uma função para imprimir um dos produtos da lista e uma função par
 """
 
 # Imports
-from Atividades.Classes.MetodosAuxiliares import MetodosAuxiliares
+from Atividades.MetodosAuxiliares import Auxiliares
 
-metodos = MetodosAuxiliares
+metodos = Auxiliares
 
 # Variáveis globais
 lista_produtos = ['ARROZ', 'FEIJAO', 'PAO', 'CARNE', 'FRANGO', 'BANANA', 'ALFACE']
@@ -43,7 +43,7 @@ def else_produto_invalido(produto):
     :return: irá retornar a informação de que o produto informado pelo usuário não existe, finalizando a ação
     """
     metodos.print_mensagem(f'\033[1;31mOperação cancelada.\033[0;0m\n'
-                           f'O produto "{produto}" não está cadastrado.\n')
+                           f'O produto "{produto}" não está cadastrado.')
 
 
 def exibir_produtos_decidir_acao(descricao_menu, acao):
@@ -82,7 +82,7 @@ def selecionar_produto(produto):
         produto_selecionado = lista_produtos.index(produto)
         metodos.print_mensagem(f'\033[1;33mNome do produto:\033[0;0m  {lista_produtos[produto_selecionado]}\n'
                                f'\033[1;33mPreço do produto:\033[0;0m R$ {lista_precos[produto_selecionado]}\n'
-                               f'\033[1;33mQuantidade:\033[0;0m       {lista_quantidades[produto_selecionado]}\n')
+                               f'\033[1;33mQuantidade:\033[0;0m       {lista_quantidades[produto_selecionado]}')
     else:
         else_produto_invalido(produto)
 
@@ -105,7 +105,7 @@ def validar_produto(produto):
         lista_precos.pop(produto_selecionado)
         lista_quantidades.pop(produto_selecionado)
 
-        metodos.print_mensagem('\033[1;32mProduto removido com sucesso.\033[0;0m\n')
+        metodos.print_mensagem('\033[1;32mProduto removido com sucesso.\033[0;0m')
     else:
         else_produto_invalido(produto)
 
