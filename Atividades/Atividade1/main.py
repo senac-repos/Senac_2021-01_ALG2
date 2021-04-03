@@ -11,7 +11,7 @@ Construir uma função para imprimir um dos produtos da lista e uma função par
 from Atividades.MetodosAuxiliares import Auxiliares, FormatarMensagem
 
 formatar = FormatarMensagem
-metodos = Auxiliares
+aux = Auxiliares
 
 # Variáveis globais
 lista_produtos = ['ARROZ', 'FEIJAO', 'PAO', 'CARNE', 'FRANGO', 'BANANA', 'ALFACE']
@@ -25,7 +25,7 @@ def menu():
 
     :return: retorna o menu de opções para o usuário
     """
-    metodos.limpa_tela_menu('MENU')
+    aux.limpa_tela_menu('MENU')
 
     return input(f'''
     {formatar.verde('0.')} Finalizar o programa
@@ -43,7 +43,7 @@ def else_produto_invalido(produto):
     :param produto: recebe o nome do produto digitado pelo usuário
     :return: irá retornar a informação de que o produto informado pelo usuário não existe, finalizando a ação
     """
-    metodos.print_mensagem(f'{formatar.vermelho("Operação cancelada.")}'
+    aux.print_mensagem(f'{formatar.vermelho("Operação cancelada.")}'
                            f'O produto "{produto}" não está cadastrado.')
 
 
@@ -56,13 +56,13 @@ def exibir_produtos_decidir_acao(descricao_menu, acao):
     :param acao: recebe uma string para concatenar com a informação da pergunta feita ao usuário
     :return: direciona o usuário a ação desejada utilizando somente um método
     """
-    metodos.limpa_tela_menu(descricao_menu)
+    aux.limpa_tela_menu(descricao_menu)
 
-    metodos.print_mensagem('Produtos cadastrados:')
+    aux.print_mensagem('Produtos cadastrados:')
     for i in lista_produtos:
         print(f'    {i}')
 
-    produto = metodos.input_upper(f'\nInforme o nome do Produto que você deseja {acao}: ')
+    produto = aux.input_upper(f'\nInforme o nome do Produto que você deseja {acao}: ')
     if 'IMPRESSÃO' in descricao_menu:
         selecionar_produto(produto)
     else:
@@ -77,17 +77,17 @@ def selecionar_produto(produto):
     :param produto: recebe o nome do produto informado pelo usuário
     :return: retorna o nome, preço e quantidade do produto solicitado pelo usuário
     """
-    metodos.limpa_tela_menu('IMPRESSÃO DE PRODUTO')
+    aux.limpa_tela_menu('IMPRESSÃO DE PRODUTO')
 
     if produto in lista_produtos:
         produto_selecionado = lista_produtos.index(produto)
-        metodos.print_mensagem(f'{formatar.amarelo("Nome do produto:")}  {lista_produtos[produto_selecionado]}\n'
+        aux.print_mensagem(f'{formatar.amarelo("Nome do produto:")}  {lista_produtos[produto_selecionado]}\n'
                                f'{formatar.amarelo("Preço do produto:")} R$ {lista_precos[produto_selecionado]}\n'
                                f'{formatar.amarelo("Quantidade:")}       {lista_quantidades[produto_selecionado]}')
     else:
         else_produto_invalido(produto)
 
-    metodos.pressionar_enter()
+    aux.pressionar_enter()
 
 
 def validar_produto(produto):
@@ -98,7 +98,7 @@ def validar_produto(produto):
     :param produto: recebe o nome do produto informado pelo usuário
     :return: remove das listas todos os dados do produto informado pelo usuário conforme seu index
     """
-    metodos.limpa_tela_menu('REMOÇÃO DE PRODUTO')
+    aux.limpa_tela_menu('REMOÇÃO DE PRODUTO')
 
     if produto in lista_produtos:
         produto_selecionado = lista_produtos.index(produto)
@@ -106,11 +106,11 @@ def validar_produto(produto):
         lista_precos.pop(produto_selecionado)
         lista_quantidades.pop(produto_selecionado)
 
-        metodos.print_mensagem(f'{formatar.verde("Produto removido com sucesso.")}')
+        aux.print_mensagem(f'{formatar.verde("Produto removido com sucesso.")}')
     else:
         else_produto_invalido(produto)
 
-    metodos.pressionar_enter()
+    aux.pressionar_enter()
 
 
 # Programa
@@ -118,10 +118,11 @@ while True:
     opcao = menu()
 
     if opcao == '0':
+        aux.finalizar_programa()
         break
     elif opcao == '1':
         exibir_produtos_decidir_acao('IMPRESSÃO DE PRODUTO', 'imprimir')
     elif opcao == '2':
         exibir_produtos_decidir_acao('REMOÇÃO DE PRODUTO', 'remover')
     else:
-        metodos.opcao_invalida()
+        aux.opcao_invalida()

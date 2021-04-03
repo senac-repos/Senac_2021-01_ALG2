@@ -37,7 +37,7 @@ def menu_veiculo():
     aux.limpa_tela_menu('SELECIONE UM VEÍCULO PARA CADASTRAR')
 
     return input(f'''
-    {formatar.verde('0.')} Retornar ao menu anterior
+    {formatar.verde('X.')} Pressione qualquer tecla para retornar ao menu anterior
     {formatar.verde('1.')} Bicicleta
     {formatar.verde('2.')} Moto
     {formatar.verde('3.')} Carro
@@ -52,7 +52,7 @@ def cadastrar_bicicleta():
     qtd_rodas = aux.input_int('Informe a quantidade de rodas: ')
     modelo = aux.input_upper('Informe o modelo: ')
     numero_marchas = aux.input_int('Informe o número de marchas: ')
-    bagageiro = aux.validar_sim_ou_nao('A bicicleta possui bagageiro? (S/n): ')
+    bagageiro = aux.validar_booleano('A bicicleta possui bagageiro? (S/n): ')
     return bici(marca, qtd_rodas, modelo, numero_marchas, bagageiro)
 
 
@@ -63,7 +63,7 @@ def cadastrar_moto():
     qtd_rodas = aux.input_int('Informe a quantidade de rodas: ')
     modelo = aux.input_upper('Informe o modelo: ')
     potencia_motor = aux.input_float('Informe a potência do motor: ')
-    partida_eletrica = aux.validar_sim_ou_nao('A moto possui partida elétrica? (S/n): ')
+    partida_eletrica = aux.validar_booleano('A moto possui partida elétrica? (S/n): ')
     return moto(marca, qtd_rodas, modelo, potencia_motor, partida_eletrica)
 
 
@@ -110,7 +110,7 @@ def imprimir_informacoes():
 
 def informar_veiculo_nao_cadastrado(nome_menu):
     aux.limpa_tela_menu(nome_menu)
-    aux.print_mensagem(formatar.amarelo('Atenção! Ainda não existe nenhum veículo cadastrado.'))
+    aux.print_mensagem(aux.mensagem_atencao('Ainda não existe nenhum veículo cadastrado.'))
     aux.pressionar_enter()
 
 
@@ -119,20 +119,19 @@ while True:
     opcao = menu()
 
     if opcao == '0':
+        aux.finalizar_programa()
         break
     elif opcao == '1':
         opcao_veiculo = menu_veiculo()
 
-        if opcao_veiculo == '0':
-            pass
-        elif opcao_veiculo == '1':
+        if opcao_veiculo == '1':
             veiculo = cadastrar_bicicleta()
         elif opcao_veiculo == '2':
             veiculo = cadastrar_moto()
         elif opcao_veiculo == '3':
             veiculo = cadastrar_carro()
         else:
-            aux.opcao_invalida()
+            pass
     elif opcao == '2':
         acelerar_veiculo()
     elif opcao == '3':

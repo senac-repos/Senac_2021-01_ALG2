@@ -16,6 +16,15 @@ class Auxiliares:
         return print(FormatarMensagem.negrito(mensagem))
 
     @staticmethod
+    def finalizar_programa():
+        """
+        Metodo utilizado apenas para exibir uma mensagem amigável ao usuário ao finalizar o programa.
+
+        :return: retorna a mensagem "Programa finalizado. Obrigado!" na cor verde para o usuário.
+        """
+        return print(FormatarMensagem.verde('\nPrograma finalizado. Obrigado!'))
+
+    @staticmethod
     def input_upper(mensagem):
         """
         Método utilizado para transformar todos os imputs utilizados em uppercase.
@@ -30,7 +39,7 @@ class Auxiliares:
                 if var == '' or var is None:
                     raise ValueError
             except ValueError:
-                print(FormatarMensagem.amarelo('Atenção! O campo não pode ser nulo.\n'))
+                print(Auxiliares.mensagem_atencao('O campo não pode ser nulo.'))
             else:
                 break
         return var
@@ -48,7 +57,7 @@ class Auxiliares:
             try:
                 var = int(Auxiliares.input_upper(mensagem))
             except ValueError:
-                print(FormatarMensagem.vermelho('Ops! Informe somente números inteiros.\n'))
+                print(Auxiliares.mensagem_erro('Informe somente números inteiros.'))
             else:
                 break
         return var
@@ -66,8 +75,7 @@ class Auxiliares:
             try:
                 var = float(Auxiliares.input_upper(mensagem))
             except ValueError:
-                print(FormatarMensagem.vermelho('Ops! Informe somente números decimais separados por ponto. '
-                                                'Exemplo: "1.8".\n'))
+                print(Auxiliares.mensagem_erro('Informe somente números decimais separados por ponto. Exemplo: "1.8".'))
             else:
                 break
         return var
@@ -99,7 +107,7 @@ class Auxiliares:
 
         :return: retorna ao usuário que a opção informada no menu é inválida.
         """
-        print(FormatarMensagem.vermelho('\nOpção inválida.'))
+        print(Auxiliares.mensagem_erro('Opção inválida.'))
         time.sleep(1)
 
     @staticmethod
@@ -126,7 +134,7 @@ class Auxiliares:
             return "Não"
 
     @staticmethod
-    def validar_sim_ou_nao(mensagem):
+    def validar_booleano(mensagem):
         """
         Método utilizado para validar se o usuário está informando True ou False em uma variável.
         Caso o usuário informe "S", o sistema irá retornar "True".
@@ -147,7 +155,31 @@ class Auxiliares:
                 else:
                     raise ValueError
             except ValueError:
-                print(FormatarMensagem.vermelho('Ops! Informe somente "S" ou "N".\n'))
+                print(Auxiliares.mensagem_erro('Informe somente "S" ou "N".'))
+
+    @staticmethod
+    def mensagem_atencao(mensagem):
+        """
+        Método utilizado para padronizar as mensagens de atenção do sistema.
+        Todas mensagens de atenção irão possuir o título "Atenção!" e abaixo terão a mensagem escolhida pelo usuário.
+
+        :param mensagem: recebe uma string que irá representar a mensagem ao usuário.
+        :return: retorna uma mensagem em amarelo para o usuário com o título "Atenção!".
+        """
+        return FormatarMensagem.amarelo(f'Atenção!\n'
+                                        f'{mensagem}\n')
+
+    @staticmethod
+    def mensagem_erro(mensagem):
+        """
+        Método utilizado para padronizar as mensagens de erro do sistema.
+        Todas mensagens de erro irão possuir o título "Ops!" e abaixo terão a mensagem escolhida pelo usuário.
+
+        :param mensagem: recebe uma string que irá representar a mensagem ao usuário.
+        :return: retorna uma mensagem em vermelho para o usuário com o título "Ops!".
+        """
+        return FormatarMensagem.vermelho(f'Ops!\n'
+                                         f'{mensagem}\n')
 
 
 class FormatarMensagem:

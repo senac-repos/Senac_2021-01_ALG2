@@ -74,6 +74,7 @@ while True:
     opcao = menu()
 
     if opcao == '0':
+        aux.finalizar_programa()
         break
     elif opcao == '1':
         cadastrar_aluno_graduacao()
