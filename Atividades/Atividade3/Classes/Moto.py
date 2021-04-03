@@ -12,4 +12,4 @@ class Moto(Automovel):
 
     def imprimir_informacoes(self):
         super().imprimir_informacoes()
-        print(f'\t{formatar.amarelo("Possui partida elétrica:")} {aux.converter_booleano(self.partida_eletrica)}')
+        print(f'    {formatar.verde("Possui partida elétrica:")} {aux.converter_booleano(self.partida_eletrica)}')

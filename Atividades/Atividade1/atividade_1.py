@@ -8,8 +8,9 @@ Construir uma função para imprimir um dos produtos da lista e uma função par
 """
 
 # Imports
-from Atividades.MetodosAuxiliares import Auxiliares
+from Atividades.MetodosAuxiliares import Auxiliares, FormatarMensagem
 
+formatar = FormatarMensagem
 metodos = Auxiliares
 
 # Variáveis globais
@@ -26,10 +27,10 @@ def menu():
     """
     metodos.limpa_tela_menu('MENU')
 
-    return input('''
-    \033[1;32m0.\033[0;0m Finalizar o programa
-    \033[1;32m1.\033[0;0m Imprimir um produto específico
-    \033[1;32m2.\033[0;0m Remover um produto específico
+    return input(f'''
+    {formatar.verde('0.')} Finalizar o programa
+    {formatar.verde('1.')} Imprimir um produto específico
+    {formatar.verde('2.')} Remover um produto específico
 
 Escolha a opção desejada: ''')
 
@@ -42,7 +43,7 @@ def else_produto_invalido(produto):
     :param produto: recebe o nome do produto digitado pelo usuário
     :return: irá retornar a informação de que o produto informado pelo usuário não existe, finalizando a ação
     """
-    metodos.print_mensagem(f'\033[1;31mOperação cancelada.\033[0;0m\n'
+    metodos.print_mensagem(f'{formatar.vermelho("Operação cancelada.")}'
                            f'O produto "{produto}" não está cadastrado.')
 
 
@@ -80,9 +81,9 @@ def selecionar_produto(produto):
 
     if produto in lista_produtos:
         produto_selecionado = lista_produtos.index(produto)
-        metodos.print_mensagem(f'\033[1;33mNome do produto:\033[0;0m  {lista_produtos[produto_selecionado]}\n'
-                               f'\033[1;33mPreço do produto:\033[0;0m R$ {lista_precos[produto_selecionado]}\n'
-                               f'\033[1;33mQuantidade:\033[0;0m       {lista_quantidades[produto_selecionado]}')
+        metodos.print_mensagem(f'{formatar.amarelo("Nome do produto:")}  {lista_produtos[produto_selecionado]}\n'
+                               f'{formatar.amarelo("Preço do produto:")} R$ {lista_precos[produto_selecionado]}\n'
+                               f'{formatar.amarelo("Quantidade:")}       {lista_quantidades[produto_selecionado]}')
     else:
         else_produto_invalido(produto)
 
@@ -105,7 +106,7 @@ def validar_produto(produto):
         lista_precos.pop(produto_selecionado)
         lista_quantidades.pop(produto_selecionado)
 
-        metodos.print_mensagem('\033[1;32mProduto removido com sucesso.\033[0;0m')
+        metodos.print_mensagem(f'{formatar.verde("Produto removido com sucesso.")}')
     else:
         else_produto_invalido(produto)
 

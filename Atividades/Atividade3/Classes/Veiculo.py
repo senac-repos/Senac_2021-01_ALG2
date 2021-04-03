@@ -11,10 +11,10 @@ class Veiculo:
         self.velocidade = 0
 
     def imprimir_informacoes(self):
-        print(f'\t{formatar.amarelo("Marca do veículo:")} {self.marca}\n'
-              f'\t{formatar.amarelo("Quantidade de rodas:")} {self.qtd_rodas}\n'
-              f'\t{formatar.amarelo("Modelo:")} {self.modelo}\n'
-              f'\t{formatar.amarelo("Velocidade:")} {self.velocidade}')
+        print(f'    {formatar.verde("Marca do veículo:")} {self.marca}\n'
+              f'    {formatar.verde("Quantidade de rodas:")} {self.qtd_rodas}\n'
+              f'    {formatar.verde("Modelo:")} {self.modelo}\n'
+              f'    {formatar.verde("Velocidade:")} {self.velocidade}')
 
     def acelerar(self, valor):
         self.velocidade += valor

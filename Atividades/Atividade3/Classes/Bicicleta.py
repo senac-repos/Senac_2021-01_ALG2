@@ -13,5 +13,5 @@ class Bicicleta(Veiculo):
 
     def imprimir_informacoes(self):
         super().imprimir_informacoes()
-        print(f'\t{formatar.amarelo("Número de marchas:")} {self.numero_marchas}\n'
-              f'\t{formatar.amarelo("Possui bagageiro:")} {aux.converter_booleano(self.bagageiro)}')
+        print(f'    {formatar.verde("Número de marchas:")} {self.numero_marchas}\n'
+              f'    {formatar.verde("Possui bagageiro:")} {aux.converter_booleano(self.bagageiro)}')

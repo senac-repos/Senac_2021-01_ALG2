@@ -11,4 +11,4 @@ class Carro(Automovel):
 
     def imprimir_informacoes(self):
         super().imprimir_informacoes()
-        print(f'\t{formatar.amarelo("Quantidade de portas:")} {self.qtd_portas}')
+        print(f'    {formatar.verde("Quantidade de portas:")} {self.qtd_portas}')

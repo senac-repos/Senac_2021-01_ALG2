@@ -11,4 +11,4 @@ class Automovel(Veiculo):
 
     def imprimir_informacoes(self):
         super().imprimir_informacoes()
-        print(f'\t{formatar.amarelo("Potência do motor:")} {self.potencia_motor}')
+        print(f'    {formatar.verde("Potência do motor:")} {self.potencia_motor}')

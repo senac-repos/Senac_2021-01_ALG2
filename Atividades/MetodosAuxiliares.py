@@ -19,6 +19,7 @@ class Auxiliares:
     def input_upper(mensagem):
         """
         Método utilizado para transformar todos os imputs utilizados em uppercase.
+        Este método entra em loop até que o usuário informe um valor válido no campo.
 
         :param mensagem: recebe uma string que irá representar um texto.
         :return: retorna a informação atribuída a uma variável em uppercase.
@@ -29,7 +30,7 @@ class Auxiliares:
                 if var == '' or var is None:
                     raise ValueError
             except ValueError:
-                print(FormatarMensagem.vermelho('Ops! Campo não pode ser nulo.\n'))
+                print(FormatarMensagem.amarelo('Atenção! O campo não pode ser nulo.\n'))
             else:
                 break
         return var
@@ -38,14 +39,14 @@ class Auxiliares:
     def input_int(mensagem):
         """
         Método utilizado para validar se o valor informado é inteiro.
-        Entra em loop até que o usuário informe um valor válido.
+        Este método entra em loop até que o usuário informe um valor válido.
 
         :param mensagem: recebe uma string que irá representar um texto.
         :return: retorna e valida se a informação atribuída a uma variável é inteira.
         """
         while True:
             try:
-                var = int(input(mensagem))
+                var = int(Auxiliares.input_upper(mensagem))
             except ValueError:
                 print(FormatarMensagem.vermelho('Ops! Informe somente números inteiros.\n'))
             else:
@@ -56,14 +57,14 @@ class Auxiliares:
     def input_float(mensagem):
         """
         Método utilizado para validar se o valor informado é float.
-        Entra em loop até que o usuário informe um valor válido.
+        Este método entra em loop até que o usuário informe um valor válido.
 
         :param mensagem: recebe uma string que irá representar um texto.
         :return: retorna e valida se a informação atribuída a uma variável é de ponto flutuante.
         """
         while True:
             try:
-                var = float(input(mensagem))
+                var = float(Auxiliares.input_upper(mensagem))
             except ValueError:
                 print(FormatarMensagem.vermelho('Ops! Informe somente números decimais separados por ponto. '
                                                 'Exemplo: "1.8".\n'))
@@ -128,14 +129,25 @@ class Auxiliares:
     def validar_sim_ou_nao(mensagem):
         """
         Método utilizado para validar se o usuário está informando True ou False em uma variável.
-        Caso o usuário informe "S", o sistema irá carregar "True".
-        Caso o usuário informe qualquer letra diferente de "S", o sistema irá carregar "False".
+        Caso o usuário informe "S", o sistema irá retornar "True".
+        Caso o usuário informe "N", o sistema irá retornar "False".
+        Este método entra em loop até que o usuário informe "S" ou "N".
 
         :param mensagem: recebe uma string que irá representar um texto.
         :return: irá informar ao construtor das classes a informação True ou False de acordo com a informação do
         usuário.
         """
-        return Auxiliares.input_upper(f'{mensagem} (S/n): ') == 'S'
+        while True:
+            try:
+                var = Auxiliares.input_upper(f'{mensagem}')
+                if var == 'S':
+                    return True
+                elif var == 'N':
+                    return False
+                else:
+                    raise ValueError
+            except ValueError:
+                print(FormatarMensagem.vermelho('Ops! Informe somente "S" ou "N".\n'))
 
 
 class FormatarMensagem:

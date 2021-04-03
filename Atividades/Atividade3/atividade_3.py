@@ -6,6 +6,7 @@ O método frear da classe Veículo deve subtrair o valor passado por parâmetro 
 O método imprimirInformacoes de cada uma das classes deve exibir na tela o conteúdo de cada um dos atributos da classe.
 """
 
+# Imports
 from Atividades.MetodosAuxiliares import Auxiliares, FormatarMensagem
 from Classes.Bicicleta import Bicicleta
 from Classes.Carro import Carro
@@ -18,6 +19,7 @@ carro = Carro
 moto = Moto
 
 
+# Métodos referentes as opções dos menus
 def menu():
     aux.limpa_tela_menu('MENU')
 
@@ -50,7 +52,7 @@ def cadastrar_bicicleta():
     qtd_rodas = aux.input_int('Informe a quantidade de rodas: ')
     modelo = aux.input_upper('Informe o modelo: ')
     numero_marchas = aux.input_int('Informe o número de marchas: ')
-    bagageiro = aux.validar_sim_ou_nao('A bicicleta possui bagageiro?')
+    bagageiro = aux.validar_sim_ou_nao('A bicicleta possui bagageiro? (S/n): ')
     return bici(marca, qtd_rodas, modelo, numero_marchas, bagageiro)
 
 
@@ -61,7 +63,7 @@ def cadastrar_moto():
     qtd_rodas = aux.input_int('Informe a quantidade de rodas: ')
     modelo = aux.input_upper('Informe o modelo: ')
     potencia_motor = aux.input_float('Informe a potência do motor: ')
-    partida_eletrica = aux.validar_sim_ou_nao('A moto possui partida elétrica?')
+    partida_eletrica = aux.validar_sim_ou_nao('A moto possui partida elétrica? (S/n): ')
     return moto(marca, qtd_rodas, modelo, potencia_motor, partida_eletrica)
 
 
@@ -108,10 +110,11 @@ def imprimir_informacoes():
 
 def informar_veiculo_nao_cadastrado(nome_menu):
     aux.limpa_tela_menu(nome_menu)
-    aux.print_mensagem(formatar.vermelho('Ainda não existe nenhum veículo cadastrado.'))
+    aux.print_mensagem(formatar.amarelo('Atenção! Ainda não existe nenhum veículo cadastrado.'))
     aux.pressionar_enter()
 
 
+# Programa
 while True:
     opcao = menu()
 
