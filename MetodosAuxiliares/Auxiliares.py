@@ -1,19 +1,25 @@
 import os
 import time
 
+from MetodosAuxiliares.FormatarFontes import FormatarFontes
+from MetodosAuxiliares.Mensagens import Mensagens
+
+fonte = FormatarFontes
+msg = Mensagens
+
 
 class Auxiliares:
     @staticmethod
     def limpa_tela_menu(mensagem):
         """
-        Método utiliado para limpar a tela.
+        Método utiliado para limpar a tela e imprimir o nome do menu.
         Ler arquivo README para maiores informações de como utilizar este método em distribuições Linux ou MacOs.
 
         :param mensagem: recebe uma string que irá representar o título do menu.
         :return: limpa a tela e retorna o nome do menu escolhido pelo usuário.
         """
         os.system('clear') or None
-        return print(FormatarMensagem.negrito(mensagem))
+        return print(fonte.negrito(mensagem))
 
     @staticmethod
     def finalizar_programa():
@@ -22,7 +28,19 @@ class Auxiliares:
 
         :return: retorna a mensagem "Programa finalizado. Obrigado!" na cor verde para o usuário.
         """
-        return print(FormatarMensagem.verde('\nPrograma finalizado. Obrigado!'))
+        Auxiliares.limpa_tela_menu('MENU')
+        print(fonte.verde('\nPrograma finalizado.'))
+
+    @staticmethod
+    def opcao_invalida():
+        """
+        Método utilizado para informar ao usuário que a opção digitada no menu é inválida.
+
+        :return: retorna ao usuário que a opção informada no menu é inválida.
+        """
+        Auxiliares.limpa_tela_menu('MENU\n')
+        print(msg.mensagem_erro('Opção inválida.'))
+        time.sleep(1)
 
     @staticmethod
     def input_upper(mensagem):
@@ -39,7 +57,7 @@ class Auxiliares:
                 if var == '' or var is None:
                     raise ValueError
             except ValueError:
-                print(Auxiliares.mensagem_atencao('O campo não pode ser nulo.'))
+                print(msg.mensagem_erro('O campo não pode ser nulo.'))
             else:
                 break
         return var
@@ -57,7 +75,7 @@ class Auxiliares:
             try:
                 var = int(Auxiliares.input_upper(mensagem))
             except ValueError:
-                print(Auxiliares.mensagem_erro('Informe somente números inteiros.'))
+                print(msg.mensagem_atencao('Informe somente números inteiros.'))
             else:
                 break
         return var
@@ -75,7 +93,7 @@ class Auxiliares:
             try:
                 var = float(Auxiliares.input_upper(mensagem))
             except ValueError:
-                print(Auxiliares.mensagem_erro('Informe somente números decimais separados por ponto. Exemplo: "1.8".'))
+                print(msg.mensagem_atencao('Informe somente números decimais separados por ponto. Exemplo: "1.8".'))
             else:
                 break
         return var
@@ -98,17 +116,7 @@ class Auxiliares:
         :return: retorna uma mensagem ao usuário solicitando que pressione a tecla ENTER para continuar a utilizar o
         sistema.
         """
-        return input(f'\nPressione {FormatarMensagem.negrito("ENTER")} para continuar.')
-
-    @staticmethod
-    def opcao_invalida():
-        """
-        Método utilizado para informar ao usuário que a opção digitada no menu é inválida.
-
-        :return: retorna ao usuário que a opção informada no menu é inválida.
-        """
-        print(Auxiliares.mensagem_erro('Opção inválida.'))
-        time.sleep(1)
+        return input(f'Pressione {fonte.negrito("ENTER")} para continuar.')
 
     @staticmethod
     def inserir_nova_linha():
@@ -155,52 +163,4 @@ class Auxiliares:
                 else:
                     raise ValueError
             except ValueError:
-                print(Auxiliares.mensagem_erro('Informe somente "S" ou "N".'))
-
-    @staticmethod
-    def mensagem_atencao(mensagem):
-        """
-        Método utilizado para padronizar as mensagens de atenção do sistema.
-        Todas mensagens de atenção irão possuir o título "Atenção!" e abaixo terão a mensagem escolhida pelo usuário.
-
-        :param mensagem: recebe uma string que irá representar a mensagem ao usuário.
-        :return: retorna uma mensagem em amarelo para o usuário com o título "Atenção!".
-        """
-        return FormatarMensagem.amarelo(f'Atenção!\n'
-                                        f'{mensagem}\n')
-
-    @staticmethod
-    def mensagem_erro(mensagem):
-        """
-        Método utilizado para padronizar as mensagens de erro do sistema.
-        Todas mensagens de erro irão possuir o título "Ops!" e abaixo terão a mensagem escolhida pelo usuário.
-
-        :param mensagem: recebe uma string que irá representar a mensagem ao usuário.
-        :return: retorna uma mensagem em vermelho para o usuário com o título "Ops!".
-        """
-        return FormatarMensagem.vermelho(f'Ops!\n'
-                                         f'{mensagem}\n')
-
-
-class FormatarMensagem:
-    """
-    Os métodos desta classe são utilizados apenas para formatar a fonte de apresentação do código no console.
-    Para maiores informações, acesse:
-        https://raccoon.ninja/pt/dev-pt/tabela-de-cores-ansi-python/
-        https://wiki.python.org.br/CoresNoTerminal
-    """
-    @staticmethod
-    def amarelo(mensagem):
-        return f'\033[1;33m{mensagem}\033[0;0m'
-
-    @staticmethod
-    def verde(mensagem):
-        return f'\033[1;32m{mensagem}\033[0;0m'
-
-    @staticmethod
-    def vermelho(mensagem):
-        return f'\033[1;31m{mensagem}\033[0;0m'
-
-    @staticmethod
-    def negrito(mensagem):
-        return f'\033[;1m{mensagem}\033[0;0m'
+                print(msg.mensagem_atencao('Informe somente "S" ou "N".'))

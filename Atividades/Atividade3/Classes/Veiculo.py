@@ -1,6 +1,6 @@
-from Atividades.MetodosAuxiliares import FormatarMensagem
+from MetodosAuxiliares.FormatarFontes import FormatarFontes
 
-formatar = FormatarMensagem
+fonte = FormatarFontes
 
 
 class Veiculo:
@@ -11,10 +11,10 @@ class Veiculo:
         self.velocidade = 0
 
     def imprimir_informacoes(self):
-        print(f'    {formatar.verde("Marca do veículo:")} {self.marca}\n'
-              f'    {formatar.verde("Quantidade de rodas:")} {self.qtd_rodas}\n'
-              f'    {formatar.verde("Modelo:")} {self.modelo}\n'
-              f'    {formatar.verde("Velocidade:")} {self.velocidade}')
+        print(f'    {fonte.verde("Marca do veículo:")} {self.marca}\n'
+              f'    {fonte.verde("Quantidade de rodas:")} {self.qtd_rodas}\n'
+              f'    {fonte.verde("Modelo:")} {self.modelo}\n'
+              f'    {fonte.verde("Velocidade:")} {self.velocidade}')
 
     def acelerar(self, valor):
         self.velocidade += valor

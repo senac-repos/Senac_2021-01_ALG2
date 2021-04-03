@@ -1,8 +1,9 @@
 from Atividades.Atividade3.Classes.Veiculo import Veiculo
-from Atividades.MetodosAuxiliares import Auxiliares, FormatarMensagem
+from MetodosAuxiliares.Auxiliares import Auxiliares
+from MetodosAuxiliares.FormatarFontes import FormatarFontes
 
 aux = Auxiliares
-formatar = FormatarMensagem
+formatar = FormatarFontes
 
 
 class Bicicleta(Veiculo):

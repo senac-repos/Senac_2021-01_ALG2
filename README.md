@@ -3,13 +3,11 @@
 
 ---
 
-Este repositório é exclusivo para atividades e trabalhos da cadeira de ALG2.
-
----
-
 ### É importante saber:
-No arquivo `MetodosAuxiliares.py` localizado em `~/Atividades/` existem duas classes, uma delas é utilizada para auxiliar
-todos os exercícios e trabalhos do semestre. A outra classe é utilizada para formatar a fonte das mensagens no console.
+No diretório `~/MetodosAuxiliares/` existem três classes:
+- Classe `Auxiliares`: é utilizada para auxiliar e reutilizar todos os métodos nos exercícios e trabalhos do semestre;
+- Classe `Mensagens`: é utilizada para padronizar a forma de exibição das mensagens de Alerta, Erro e Sucesso;
+- Classe `FormatarFontes`: é utilizada para formatar a fonte das mensagens no console.
 
 Na classe `Auxiliares` existe um método chamado `limpa_tela_menu`, este método tem a função de limpar a tela do console 
 e exibir como cabeçalho o nome do menu conforme definido pelo 
@@ -21,20 +19,18 @@ console" conforme imagem abaixo:
 
 ![img.png](img.png)
 
-Caso esta confirmação não seja realizada, será exibida uma mensagem de erro: _TERM environment variable not set._, o 
-programa irá executar normalmente, porém o método não irá funcionar.
+Caso esta ação não seja realizada, será exibida uma mensagem de erro: _TERM environment variable not set._, o 
+programa irá executar normalmente, porém o método não irá funcionar corretamente.
 
 ---
 
 ### Diretórios:
-
-Todas as atividades estarão hospedadas em `~/Atividades`. Trabalhos estarão hospedados em `~/Trabalhos`.
+- Atividades estarão hospedadas em `~/Atividades`.
+- Trabalhos estarão hospedados em `~/Trabalhos`.
 
 ---
 
 ### Documentações
-
-Os métodos das classes localizadas no arquivo `MetodosAuxiliares.py` estão todas documentadas para auxiliar o usuário 
-que ler o código. Esta abordagem foi utilizada para que outras pessoas fossam analisar o código e entender o que está 
-sendo realizado a cada
-método.
+Os métodos das classes localizadas no arquivo `Metodos.py` estão documentadas para auxiliar o usuário que ler o código.
+Esta abordagem foi utilizada para que outras pessoas fossam analisar o código e entender o que está sendo realizado a 
+cada chamada.

@@ -7,13 +7,16 @@ O método imprimirInformacoes de cada uma das classes deve exibir na tela o cont
 """
 
 # Imports
-from Atividades.MetodosAuxiliares import Auxiliares, FormatarMensagem
 from Classes.Bicicleta import Bicicleta
 from Classes.Carro import Carro
 from Classes.Moto import Moto
+from MetodosAuxiliares.Auxiliares import Auxiliares
+from MetodosAuxiliares.FormatarFontes import FormatarFontes
+from MetodosAuxiliares.Mensagens import Mensagens
 
+msg = Mensagens
 aux = Auxiliares
-formatar = FormatarMensagem
+fonte = FormatarFontes
 bici = Bicicleta
 carro = Carro
 moto = Moto
@@ -24,11 +27,11 @@ def menu():
     aux.limpa_tela_menu('MENU')
 
     return input(f'''
-    {formatar.verde('0.')} Finalizar o programa
-    {formatar.verde('1.')} Cadastrar
-    {formatar.verde('2.')} Acelerar
-    {formatar.verde('3.')} Frear
-    {formatar.verde('4.')} Imprimir informações
+    {fonte.verde('0.')} Finalizar o programa
+    {fonte.verde('1.')} Cadastrar
+    {fonte.verde('2.')} Acelerar
+    {fonte.verde('3.')} Frear
+    {fonte.verde('4.')} Imprimir informações
 
 Escolha a opção desejada: ''')
 
@@ -37,11 +40,11 @@ def menu_veiculo():
     aux.limpa_tela_menu('SELECIONE UM VEÍCULO PARA CADASTRAR')
 
     return input(f'''
-    {formatar.verde('X.')} Pressione qualquer tecla para retornar ao menu anterior
-    {formatar.verde('1.')} Bicicleta
-    {formatar.verde('2.')} Moto
-    {formatar.verde('3.')} Carro
-
+    {fonte.verde('1.')} Bicicleta
+    {fonte.verde('2.')} Moto
+    {fonte.verde('3.')} Carro
+    
+Pressione qualquer tecla para retornar ao menu anterior
 Escolha a opção desejada: ''')
 
 
@@ -103,6 +106,7 @@ def imprimir_informacoes():
 
     try:
         veiculo.imprimir_informacoes()
+        aux.inserir_nova_linha()
         aux.pressionar_enter()
     except NameError:
         informar_veiculo_nao_cadastrado('IMPRESSÃO DE INFORMAÇÕES')
@@ -110,7 +114,8 @@ def imprimir_informacoes():
 
 def informar_veiculo_nao_cadastrado(nome_menu):
     aux.limpa_tela_menu(nome_menu)
-    aux.print_mensagem(aux.mensagem_atencao('Ainda não existe nenhum veículo cadastrado.'))
+    aux.print_mensagem(msg.mensagem_atencao('Ainda não existe nenhum veículo cadastrado.'))
+    aux.inserir_nova_linha()
     aux.pressionar_enter()
 
 

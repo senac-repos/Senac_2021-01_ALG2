@@ -1,7 +1,7 @@
 from Atividades.Atividade3.Classes.Automovel import Automovel
-from Atividades.MetodosAuxiliares import FormatarMensagem
+from MetodosAuxiliares.FormatarFontes import FormatarFontes
 
-formatar = FormatarMensagem
+formatar = FormatarFontes
 
 
 class Carro(Automovel):
