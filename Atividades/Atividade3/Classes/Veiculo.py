@@ -1,4 +1,4 @@
-from MetodosAuxiliares.FormatarFontes import FormatarFontes
+from ClassesAuxiliares.FormatarFontes import FormatarFontes
 
 fonte = FormatarFontes
 

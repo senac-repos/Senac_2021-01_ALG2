@@ -1,8 +1,8 @@
 import os
 import time
 
-from MetodosAuxiliares.FormatarFontes import FormatarFontes
-from MetodosAuxiliares.Mensagens import Mensagens
+from ClassesAuxiliares.FormatarFontes import FormatarFontes
+from ClassesAuxiliares.Mensagens import Mensagens
 
 fonte = FormatarFontes
 msg = Mensagens

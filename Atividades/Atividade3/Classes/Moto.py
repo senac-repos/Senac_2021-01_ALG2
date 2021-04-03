@@ -1,6 +1,6 @@
 from Atividades.Atividade3.Classes.Automovel import Automovel
-from MetodosAuxiliares.Auxiliares import Auxiliares
-from MetodosAuxiliares.FormatarFontes import FormatarFontes
+from ClassesAuxiliares.Auxiliares import Auxiliares
+from ClassesAuxiliares.FormatarFontes import FormatarFontes
 
 aux = Auxiliares
 formatar = FormatarFontes

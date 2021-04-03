@@ -4,7 +4,7 @@
 ---
 
 ### É importante saber:
-No diretório `~/MetodosAuxiliares/` existem três classes:
+No diretório `~/ClassesAuxiliares/` existem três classes:
 - Classe `Auxiliares`: é utilizada para auxiliar e reutilizar todos os métodos nos exercícios e trabalhos do semestre;
 - Classe `Mensagens`: é utilizada para padronizar a forma de exibição das mensagens de Alerta, Erro e Sucesso;
 - Classe `FormatarFontes`: é utilizada para formatar a fonte das mensagens no console.

@@ -8,9 +8,9 @@ Construir uma função para imprimir um dos produtos da lista e uma função par
 """
 
 # Imports
-from MetodosAuxiliares.Auxiliares import Auxiliares
-from MetodosAuxiliares.FormatarFontes import FormatarFontes
-from MetodosAuxiliares.Mensagens import Mensagens
+from ClassesAuxiliares.Auxiliares import Auxiliares
+from ClassesAuxiliares.FormatarFontes import FormatarFontes
+from ClassesAuxiliares.Mensagens import Mensagens
 
 msg = Mensagens
 fonte = FormatarFontes

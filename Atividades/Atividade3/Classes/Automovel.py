@@ -1,5 +1,5 @@
 from Atividades.Atividade3.Classes.Veiculo import Veiculo
-from MetodosAuxiliares.FormatarFontes import FormatarFontes
+from ClassesAuxiliares.FormatarFontes import FormatarFontes
 
 formatar = FormatarFontes
 

@@ -9,8 +9,8 @@ o método imprimir, que imprime na tela os valores de todos os atributos da sua 
 # Imports
 from Classes.AlunoEnsinoMedio import AlunoEnsinoMedio
 from Classes.AlunoGraduacao import AlunoGraduacao
-from MetodosAuxiliares.Auxiliares import Auxiliares
-from MetodosAuxiliares.FormatarFontes import FormatarFontes
+from ClassesAuxiliares.Auxiliares import Auxiliares
+from ClassesAuxiliares.FormatarFontes import FormatarFontes
 
 fonte = FormatarFontes
 grad = AlunoGraduacao

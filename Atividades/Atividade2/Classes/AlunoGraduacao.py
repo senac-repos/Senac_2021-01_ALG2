@@ -1,5 +1,5 @@
 from Atividades.Atividade2.Classes.Aluno import Aluno
-from MetodosAuxiliares.FormatarFontes import FormatarFontes
+from ClassesAuxiliares.FormatarFontes import FormatarFontes
 
 fonte = FormatarFontes
 

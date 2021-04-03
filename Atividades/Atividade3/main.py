@@ -10,9 +10,9 @@ O método imprimirInformacoes de cada uma das classes deve exibir na tela o cont
 from Classes.Bicicleta import Bicicleta
 from Classes.Carro import Carro
 from Classes.Moto import Moto
-from MetodosAuxiliares.Auxiliares import Auxiliares
-from MetodosAuxiliares.FormatarFontes import FormatarFontes
-from MetodosAuxiliares.Mensagens import Mensagens
+from ClassesAuxiliares.Auxiliares import Auxiliares
+from ClassesAuxiliares.FormatarFontes import FormatarFontes
+from ClassesAuxiliares.Mensagens import Mensagens
 
 msg = Mensagens
 aux = Auxiliares
