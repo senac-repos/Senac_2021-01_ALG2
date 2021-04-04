@@ -1,9 +1,6 @@
 from Atividades.Atividade3.Classes.Veiculo import Veiculo
-from ClassesAuxiliares.Auxiliares import Auxiliares
-from ClassesAuxiliares.FormatarFontes import FormatarFontes
-
-aux = Auxiliares
-formatar = FormatarFontes
+from ClassesAuxiliares.Auxiliares import Auxiliares as Aux
+from ClassesAuxiliares.FormatarFontes import FormatarFontes as Fonte
 
 
 class Bicicleta(Veiculo):
@@ -14,5 +11,5 @@ class Bicicleta(Veiculo):
 
     def imprimir_informacoes(self):
         super().imprimir_informacoes()
-        print(f'    {formatar.verde("Número de marchas:")} {self.numero_marchas}\n'
-              f'    {formatar.verde("Possui bagageiro:")} {aux.converter_booleano(self.bagageiro)}')
+        print(f'    {Fonte.verde("Número de marchas:")} {self.numero_marchas}\n'
+              f'    {Fonte.verde("Possui bagageiro:")} {Aux.converter_booleano(self.bagageiro)}')

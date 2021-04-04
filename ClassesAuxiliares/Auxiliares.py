@@ -1,11 +1,8 @@
 import os
 import time
 
-from ClassesAuxiliares.FormatarFontes import FormatarFontes
-from ClassesAuxiliares.Mensagens import Mensagens
-
-fonte = FormatarFontes
-msg = Mensagens
+from ClassesAuxiliares.FormatarFontes import FormatarFontes as Fonte
+from ClassesAuxiliares.Mensagens import Mensagens as Msg
 
 
 class Auxiliares:
@@ -19,27 +16,31 @@ class Auxiliares:
         :return: limpa a tela e retorna o nome do menu escolhido pelo usuário.
         """
         os.system('clear') or None
-        return print(fonte.negrito(mensagem))
+        return print(Fonte.negrito(mensagem))
 
     @staticmethod
     def finalizar_programa(nome_menu):
         """
         Metodo utilizado apenas para exibir uma mensagem amigável ao usuário ao finalizar o programa.
 
+        :param nome_menu: parâmetro utilizado para definir o nome do menu de acordo com o momento que o método for
+        chamado.
         :return: retorna a mensagem "Programa finalizado. Obrigado!" na cor verde para o usuário.
         """
         Auxiliares.limpa_tela_menu(f'{nome_menu}\n')
-        print(fonte.verde('Programa finalizado.'))
+        print(Fonte.verde('Programa finalizado.'))
 
     @staticmethod
     def opcao_invalida(nome_menu):
         """
         Método utilizado para informar ao usuário que a opção digitada no menu é inválida.
 
+        :param nome_menu: parâmetro utilizado para definir o nome do menu de acordo com o momento que o método for
+        chamado.
         :return: retorna ao usuário que a opção informada no menu é inválida.
         """
         Auxiliares.limpa_tela_menu(f'{nome_menu}\n')
-        print(msg.mensagem_erro('Opção inválida.'))
+        print(Msg.mensagem_erro('Opção inválida.'))
         time.sleep(1)
 
     @staticmethod
@@ -57,7 +58,7 @@ class Auxiliares:
                 if var == '' or var is None:
                     raise ValueError
             except ValueError:
-                print(msg.mensagem_atencao('O campo não pode ser nulo.'))
+                print(Msg.mensagem_atencao('O campo não pode ser nulo.'))
             else:
                 break
         return var
@@ -75,7 +76,7 @@ class Auxiliares:
             try:
                 var = int(Auxiliares.input_upper(mensagem))
             except ValueError:
-                print(msg.mensagem_erro('Informe somente números inteiros.'))
+                print(Msg.mensagem_erro('Informe somente números inteiros.'))
             else:
                 break
         return var
@@ -93,7 +94,7 @@ class Auxiliares:
             try:
                 var = float(Auxiliares.input_upper(mensagem))
             except ValueError:
-                print(msg.mensagem_erro('Informe somente números decimais separados por ponto. Exemplo: "1.8".'))
+                print(Msg.mensagem_erro('Informe somente números decimais separados por ponto. Exemplo: "1.8".'))
             else:
                 break
         return var
@@ -116,7 +117,7 @@ class Auxiliares:
         :return: retorna uma mensagem ao usuário solicitando que pressione a tecla ENTER para continuar a utilizar o
         sistema.
         """
-        return input(f'Pressione {fonte.negrito("ENTER")} para continuar.')
+        return input(f'Pressione {Fonte.negrito("ENTER")} para continuar.')
 
     @staticmethod
     def inserir_nova_linha():
@@ -163,4 +164,4 @@ class Auxiliares:
                 else:
                     raise ValueError
             except ValueError:
-                print(msg.mensagem_erro('Informe somente "S" ou "N".'))
+                print(Msg.mensagem_erro('Informe somente "S" ou "N".'))

@@ -1,9 +1,6 @@
 from Atividades.Atividade3.Classes.Automovel import Automovel
-from ClassesAuxiliares.Auxiliares import Auxiliares
-from ClassesAuxiliares.FormatarFontes import FormatarFontes
-
-aux = Auxiliares
-formatar = FormatarFontes
+from ClassesAuxiliares.Auxiliares import Auxiliares as Aux
+from ClassesAuxiliares.FormatarFontes import FormatarFontes as Fonte
 
 
 class Moto(Automovel):
@@ -13,4 +10,4 @@ class Moto(Automovel):
 
     def imprimir_informacoes(self):
         super().imprimir_informacoes()
-        print(f'    {formatar.verde("Possui partida elétrica:")} {aux.converter_booleano(self.partida_eletrica)}')
+        print(f'    {Fonte.verde("Possui partida elétrica:")} {Aux.converter_booleano(self.partida_eletrica)}')

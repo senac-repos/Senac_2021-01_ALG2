@@ -1,6 +1,4 @@
-from ClassesAuxiliares.FormatarFontes import FormatarFontes
-
-fonte = FormatarFontes
+from ClassesAuxiliares.FormatarFontes import FormatarFontes as Fonte
 
 
 class Mensagens:
@@ -13,7 +11,7 @@ class Mensagens:
         :param mensagem: recebe uma string que irá representar a mensagem ao usuário.
         :return: retorna uma mensagem em amarelo para o usuário com o título "Atenção!".
         """
-        return fonte.amarelo(f'Atenção! {mensagem}')
+        return Fonte.amarelo(f'Atenção! {mensagem}')
 
     @staticmethod
     def mensagem_erro(mensagem):
@@ -24,7 +22,7 @@ class Mensagens:
         :param mensagem: recebe uma string que irá representar a mensagem ao usuário.
         :return: retorna uma mensagem em vermelho para o usuário com o título "Ops!".
         """
-        return fonte.vermelho(f'Ops! {mensagem}')
+        return Fonte.vermelho(f'Ops! {mensagem}')
 
     @staticmethod
     def mensagem_sucesso(mensagem):
@@ -35,4 +33,4 @@ class Mensagens:
         :param mensagem: recebe uma string que irá representar a mensagem ao usuário.
         :return: retorna uma mensagem em verde para o usuário com o título "Sucesso!".
         """
-        return fonte.verde(f'Sucesso! {mensagem}')
+        return Fonte.verde(f'Sucesso! {mensagem}')

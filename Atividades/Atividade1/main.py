@@ -8,13 +8,9 @@ Construir uma função para imprimir um dos produtos da lista e uma função par
 """
 
 # Imports
-from ClassesAuxiliares.Auxiliares import Auxiliares
-from ClassesAuxiliares.FormatarFontes import FormatarFontes
-from ClassesAuxiliares.Mensagens import Mensagens
-
-msg = Mensagens
-fonte = FormatarFontes
-aux = Auxiliares
+from ClassesAuxiliares.Auxiliares import Auxiliares as Aux
+from ClassesAuxiliares.FormatarFontes import FormatarFontes as Fonte
+from ClassesAuxiliares.Mensagens import Mensagens as Msg
 
 # Variáveis globais
 lista_produtos = ['ARROZ', 'FEIJAO', 'PAO', 'CARNE', 'FRANGO', 'BANANA', 'ALFACE']
@@ -29,12 +25,12 @@ def menu():
 
     :return: retorna o menu de opções para o usuário
     """
-    aux.limpa_tela_menu('MENU')
+    Aux.limpa_tela_menu('MENU')
 
     return input(f'''
-    {fonte.verde('0.')} Finalizar o programa
-    {fonte.verde('1.')} Imprimir um produto específico
-    {fonte.verde('2.')} Remover um produto específico
+    {Fonte.verde('0.')} Finalizar o programa
+    {Fonte.verde('1.')} Imprimir um produto específico
+    {Fonte.verde('2.')} Remover um produto específico
 
 Escolha a opção desejada: ''')
 
@@ -46,8 +42,8 @@ def else_produto_invalido(produto):
     :param produto: recebe o nome do produto digitado pelo usuário
     :return: irá retornar a informação de que o produto informado pelo usuário não existe, finalizando a ação
     """
-    aux.print_mensagem(msg.mensagem_erro(f'O produto "{produto}" não está cadastrado.'))
-    aux.print_mensagem('Operação cancelada.')
+    Aux.print_mensagem(Msg.mensagem_erro(f'O produto "{produto}" não está cadastrado.'))
+    Aux.print_mensagem('Operação cancelada.')
 
 
 def exibir_produtos_decidir_acao(descricao_menu, acao):
@@ -59,14 +55,14 @@ def exibir_produtos_decidir_acao(descricao_menu, acao):
     :param acao: recebe uma string para concatenar com a informação da pergunta feita ao usuário
     :return: direciona o usuário a ação desejada utilizando somente um método
     """
-    aux.limpa_tela_menu(descricao_menu)
+    Aux.limpa_tela_menu(descricao_menu)
 
-    aux.print_mensagem('Produtos cadastrados:')
+    Aux.print_mensagem('Produtos cadastrados:')
     for i in lista_produtos:
         print(f'    {i}')
 
-    aux.inserir_nova_linha()
-    produto = aux.input_upper(f'Informe o nome do Produto que você deseja {acao}: ')
+    Aux.inserir_nova_linha()
+    produto = Aux.input_upper(f'Informe o nome do Produto que você deseja {acao}: ')
     if 'IMPRESSÃO' in descricao_menu:
         selecionar_produto(produto)
     else:
@@ -81,18 +77,18 @@ def selecionar_produto(produto):
     :param produto: recebe o nome do produto informado pelo usuário
     :return: retorna o nome, preço e quantidade do produto solicitado pelo usuário
     """
-    aux.limpa_tela_menu('IMPRESSÃO DE PRODUTO')
+    Aux.limpa_tela_menu('IMPRESSÃO DE PRODUTO')
 
     if produto in lista_produtos:
         produto_selecionado = lista_produtos.index(produto)
-        aux.print_mensagem(f'   {fonte.amarelo("Nome do produto:")}  {lista_produtos[produto_selecionado]}\n'
-                           f'   {fonte.amarelo("Preço do produto:")} R$ {lista_precos[produto_selecionado]}\n'
-                           f'   {fonte.amarelo("Quantidade:")}       {lista_quantidades[produto_selecionado]}')
-        aux.inserir_nova_linha()
+        Aux.print_mensagem(f'   {Fonte.amarelo("Nome do produto:")}  {lista_produtos[produto_selecionado]}\n'
+                           f'   {Fonte.amarelo("Preço do produto:")} R$ {lista_precos[produto_selecionado]}\n'
+                           f'   {Fonte.amarelo("Quantidade:")}       {lista_quantidades[produto_selecionado]}')
+        Aux.inserir_nova_linha()
     else:
         else_produto_invalido(produto)
 
-    aux.pressionar_enter()
+    Aux.pressionar_enter()
 
 
 def validar_produto(produto):
@@ -103,7 +99,7 @@ def validar_produto(produto):
     :param produto: recebe o nome do produto informado pelo usuário
     :return: remove das listas todos os dados do produto informado pelo usuário conforme seu index
     """
-    aux.limpa_tela_menu('REMOÇÃO DE PRODUTO')
+    Aux.limpa_tela_menu('REMOÇÃO DE PRODUTO')
 
     if produto in lista_produtos:
         produto_selecionado = lista_produtos.index(produto)
@@ -111,12 +107,12 @@ def validar_produto(produto):
         lista_precos.pop(produto_selecionado)
         lista_quantidades.pop(produto_selecionado)
 
-        aux.print_mensagem(msg.mensagem_sucesso('O produto foi removido da lista.'))
-        aux.inserir_nova_linha()
+        Aux.print_mensagem(Msg.mensagem_sucesso('O produto foi removido da lista.'))
+        Aux.inserir_nova_linha()
     else:
         else_produto_invalido(produto)
 
-    aux.pressionar_enter()
+    Aux.pressionar_enter()
 
 
 # Programa
@@ -124,11 +120,11 @@ while True:
     opcao = menu()
 
     if opcao == '0':
-        aux.finalizar_programa('MENU')
+        Aux.finalizar_programa('MENU')
         break
     elif opcao == '1':
         exibir_produtos_decidir_acao('IMPRESSÃO DE PRODUTO', 'imprimir')
     elif opcao == '2':
         exibir_produtos_decidir_acao('REMOÇÃO DE PRODUTO', 'remover')
     else:
-        aux.opcao_invalida('MENU')
+        Aux.opcao_invalida('MENU')

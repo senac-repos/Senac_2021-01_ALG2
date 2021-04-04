@@ -1,7 +1,5 @@
 from Atividades.Atividade3.Classes.Veiculo import Veiculo
-from ClassesAuxiliares.FormatarFontes import FormatarFontes
-
-formatar = FormatarFontes
+from ClassesAuxiliares.FormatarFontes import FormatarFontes as Fonte
 
 
 class Automovel(Veiculo):
@@ -11,4 +9,4 @@ class Automovel(Veiculo):
 
     def imprimir_informacoes(self):
         super().imprimir_informacoes()
-        print(f'    {formatar.verde("Potência do motor:")} {self.potencia_motor}')
+        print(f'    {Fonte.verde("Potência do motor:")} {self.potencia_motor}')

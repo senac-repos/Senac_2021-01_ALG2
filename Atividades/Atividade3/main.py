@@ -7,132 +7,148 @@ O método imprimirInformacoes de cada uma das classes deve exibir na tela o cont
 """
 
 # Imports
-from Classes.Bicicleta import Bicicleta
+from Classes.Bicicleta import Bicicleta as Bike
 from Classes.Carro import Carro
 from Classes.Moto import Moto
-from ClassesAuxiliares.Auxiliares import Auxiliares
-from ClassesAuxiliares.FormatarFontes import FormatarFontes
-from ClassesAuxiliares.Mensagens import Mensagens
+from ClassesAuxiliares.Auxiliares import Auxiliares as Aux
+from ClassesAuxiliares.FormatarFontes import FormatarFontes as Fonte
+from ClassesAuxiliares.Mensagens import Mensagens as Msg
 
-msg = Mensagens
-aux = Auxiliares
-fonte = FormatarFontes
-bici = Bicicleta
-carro = Carro
-moto = Moto
+
+# Métodos "privados" para centralizar o nome dos menus
+def __menu():
+    return 'MENU'
+
+
+def __cadastro():
+    return 'CADASTRO DE'
+
+
+def __frear():
+    return 'FREAR VEÍCULO'
+
+
+def __aceletar():
+    return 'ACELERAR VEÍCULO'
+
+
+def __imprimir():
+    return 'IMPRESSÃO DE INFORMAÇÕES'
 
 
 # Métodos referentes as opções dos menus
 def menu():
-    aux.limpa_tela_menu('MENU')
+    Aux.limpa_tela_menu(__menu())
 
     return input(f'''
-    {fonte.verde('0.')} Finalizar o programa
-    {fonte.verde('1.')} Cadastrar
-    {fonte.verde('2.')} Acelerar
-    {fonte.verde('3.')} Frear
-    {fonte.verde('4.')} Imprimir informações
+    {Fonte.verde('0.')} Finalizar o programa
+    {Fonte.verde('1.')} Cadastrar
+    {Fonte.verde('2.')} Acelerar
+    {Fonte.verde('3.')} Frear
+    {Fonte.verde('4.')} Imprimir informações
 
 Escolha a opção desejada: ''')
 
 
 def menu_veiculo():
-    aux.limpa_tela_menu('SELECIONE UM VEÍCULO PARA CADASTRAR')
+    Aux.limpa_tela_menu(__menu())
 
     return input(f'''
-    {fonte.verde('1.')} Bicicleta
-    {fonte.verde('2.')} Moto
-    {fonte.verde('3.')} Carro
+Escolha uma das opções abaixo para iniciar o cadastro:
+
+    {Fonte.verde('1.')} Bicicleta
+    {Fonte.verde('2.')} Moto
+    {Fonte.verde('3.')} Carro
     
-Pressione qualquer tecla para retornar ao menu anterior
+Informe qualquer tecla para retornar ao menu anterior.
 Escolha a opção desejada: ''')
 
 
 def return_marca():
-    return aux.input_upper(f'Informe a marca do veículo: ')
+    return Aux.input_upper(f'Informe a marca do veículo: ')
 
 
 def return_qtd_rodas():
-    return aux.input_int('Informe a quantidade de rodas: ')
+    return Aux.input_int('Informe a quantidade de rodas: ')
 
 
 def return_modelo():
-    return aux.input_upper('Informe o modelo: ')
+    return Aux.input_upper('Informe o modelo: ')
 
 
 def return_potencia_motor():
-    return aux.input_float('Informe a potência do motor: ')
+    return Aux.input_float('Informe a potência do motor: ')
 
 
 def cadastrar_bicicleta():
-    aux.limpa_tela_menu('CADASTRO DE VEÍCULOS - BICICLETA\n')
+    Aux.limpa_tela_menu(f'{__cadastro()} BICICLETA\n')
 
     marca = return_marca()
     qtd_rodas = return_qtd_rodas()
     modelo = return_modelo()
-    numero_marchas = aux.input_int('Informe o número de marchas: ')
-    bagageiro = aux.validar_booleano('A bicicleta possui bagageiro? (S/n): ')
-    return bici(marca, qtd_rodas, modelo, numero_marchas, bagageiro)
+    numero_marchas = Aux.input_int('Informe o número de marchas: ')
+    bagageiro = Aux.validar_booleano('A bicicleta possui bagageiro? (S/n): ')
+    return Bike(marca, qtd_rodas, modelo, numero_marchas, bagageiro)
 
 
 def cadastrar_moto():
-    aux.limpa_tela_menu('CADASTRO DE VEÍCULOS - MOTO\n')
+    Aux.limpa_tela_menu(f'{__cadastro()} MOTOCICLETA\n')
 
     marca = return_marca()
     qtd_rodas = return_qtd_rodas()
     modelo = return_modelo()
     potencia_motor = return_potencia_motor()
-    partida_eletrica = aux.validar_booleano('A moto possui partida elétrica? (S/n): ')
-    return moto(marca, qtd_rodas, modelo, potencia_motor, partida_eletrica)
+    partida_eletrica = Aux.validar_booleano('A moto possui partida elétrica? (S/n): ')
+    return Moto(marca, qtd_rodas, modelo, potencia_motor, partida_eletrica)
 
 
 def cadastrar_carro():
-    aux.limpa_tela_menu('CADASTRO DE VEÍCULOS - CARRO\n')
+    Aux.limpa_tela_menu(f'{__cadastro()} CARRO\n')
 
     marca = return_marca()
     qtd_rodas = return_qtd_rodas()
     modelo = return_modelo()
     potencia_motor = return_potencia_motor()
-    qtd_portas = aux.input_int('Informe a quantidade de portas: ')
-    return carro(marca, qtd_rodas, modelo, potencia_motor, qtd_portas)
+    qtd_portas = Aux.input_int('Informe a quantidade de portas: ')
+    return Carro(marca, qtd_rodas, modelo, potencia_motor, qtd_portas)
 
 
 def acelerar_veiculo():
-    aux.limpa_tela_menu('ACELERAR VEÍCULO\n')
+    Aux.limpa_tela_menu(f'{__aceletar()}\n')
 
     try:
-        velocidade = aux.input_int('Informe o valor de aceleração: ')
+        velocidade = Aux.input_int('Informe o valor de aceleração: ')
         veiculo.acelerar(int(velocidade))
     except NameError:
-        informar_veiculo_nao_cadastrado('ACELERAR VEÍCULO')
+        informar_veiculo_nao_cadastrado(__aceletar())
 
 
 def frear_veiculo():
-    aux.limpa_tela_menu('FREAR VEÍCULO\n')
+    Aux.limpa_tela_menu(f'{__frear()}\n')
 
     try:
-        velocidade = aux.input_int('Informe o valor de freagem: ')
+        velocidade = Aux.input_int('Informe o valor de freagem: ')
         veiculo.frear(int(velocidade))
     except NameError:
-        informar_veiculo_nao_cadastrado('FREAR VEÍCULO')
+        informar_veiculo_nao_cadastrado(__frear())
 
 
 def imprimir_informacoes():
-    aux.limpa_tela_menu('IMPRESSÃO DE INFORMAÇÕES\n')
+    Aux.limpa_tela_menu(f'{__imprimir()}\n')
 
     try:
         veiculo.imprimir_informacoes()
-        aux.inserir_nova_linha()
-        aux.pressionar_enter()
+        Aux.inserir_nova_linha()
+        Aux.pressionar_enter()
     except NameError:
-        informar_veiculo_nao_cadastrado('IMPRESSÃO DE INFORMAÇÕES')
+        informar_veiculo_nao_cadastrado(__imprimir())
 
 
 def informar_veiculo_nao_cadastrado(nome_menu):
-    aux.limpa_tela_menu(nome_menu)
-    aux.print_mensagem(msg.mensagem_atencao('Ainda não existe nenhum veículo cadastrado.'))
-    aux.inserir_nova_linha()
-    aux.pressionar_enter()
+    Aux.limpa_tela_menu(nome_menu)
+    Aux.print_mensagem(Msg.mensagem_atencao('Ainda não existe nenhum veículo cadastrado.'))
+    Aux.inserir_nova_linha()
+    Aux.pressionar_enter()
 
 
 # Programa
@@ -140,7 +156,7 @@ while True:
     opcao = menu()
 
     if opcao == '0':
-        aux.finalizar_programa('MENU')
+        Aux.finalizar_programa(__menu())
         break
     elif opcao == '1':
         opcao_veiculo = menu_veiculo()
@@ -160,4 +176,4 @@ while True:
     elif opcao == '4':
         imprimir_informacoes()
     else:
-        aux.opcao_invalida('MENU')
+        Aux.opcao_invalida(__menu())
