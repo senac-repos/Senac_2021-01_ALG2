@@ -77,11 +77,11 @@ while True:
     opcao = menu()
 
     if opcao == '0':
-        aux.finalizar_programa()
+        aux.finalizar_programa('MENU')
         break
     elif opcao == '1':
         cadastrar_aluno_graduacao()
     elif opcao == '2':
         cadastrar_aluno_ens_medio()
     else:
-        aux.opcao_invalida()
+        aux.opcao_invalida('MENU')

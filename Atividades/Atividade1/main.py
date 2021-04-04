@@ -124,11 +124,11 @@ while True:
     opcao = menu()
 
     if opcao == '0':
-        aux.finalizar_programa()
+        aux.finalizar_programa('MENU')
         break
     elif opcao == '1':
         exibir_produtos_decidir_acao('IMPRESSÃO DE PRODUTO', 'imprimir')
     elif opcao == '2':
         exibir_produtos_decidir_acao('REMOÇÃO DE PRODUTO', 'remover')
     else:
-        aux.opcao_invalida()
+        aux.opcao_invalida('MENU')

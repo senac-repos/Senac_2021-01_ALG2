@@ -22,31 +22,31 @@ class Auxiliares:
         return print(fonte.negrito(mensagem))
 
     @staticmethod
-    def finalizar_programa():
+    def finalizar_programa(nome_menu):
         """
         Metodo utilizado apenas para exibir uma mensagem amigável ao usuário ao finalizar o programa.
 
         :return: retorna a mensagem "Programa finalizado. Obrigado!" na cor verde para o usuário.
         """
-        Auxiliares.limpa_tela_menu('MENU')
-        print(fonte.verde('\nPrograma finalizado.'))
+        Auxiliares.limpa_tela_menu(f'{nome_menu}\n')
+        print(fonte.verde('Programa finalizado.'))
 
     @staticmethod
-    def opcao_invalida():
+    def opcao_invalida(nome_menu):
         """
         Método utilizado para informar ao usuário que a opção digitada no menu é inválida.
 
         :return: retorna ao usuário que a opção informada no menu é inválida.
         """
-        Auxiliares.limpa_tela_menu('MENU\n')
+        Auxiliares.limpa_tela_menu(f'{nome_menu}\n')
         print(msg.mensagem_erro('Opção inválida.'))
         time.sleep(1)
 
     @staticmethod
     def input_upper(mensagem):
         """
-        Método utilizado para transformar todos os imputs utilizados em uppercase.
-        Este método entra em loop até que o usuário informe um valor válido no campo.
+        Método utilizado para transformar todos os inputs utilizados em uppercase.
+        Este método entra em loop até que o usuário informe um valor válido (não nulo) no campo.
 
         :param mensagem: recebe uma string que irá representar um texto.
         :return: retorna a informação atribuída a uma variável em uppercase.
@@ -57,7 +57,7 @@ class Auxiliares:
                 if var == '' or var is None:
                     raise ValueError
             except ValueError:
-                print(msg.mensagem_erro('O campo não pode ser nulo.'))
+                print(msg.mensagem_atencao('O campo não pode ser nulo.'))
             else:
                 break
         return var
@@ -75,7 +75,7 @@ class Auxiliares:
             try:
                 var = int(Auxiliares.input_upper(mensagem))
             except ValueError:
-                print(msg.mensagem_atencao('Informe somente números inteiros.'))
+                print(msg.mensagem_erro('Informe somente números inteiros.'))
             else:
                 break
         return var
@@ -93,7 +93,7 @@ class Auxiliares:
             try:
                 var = float(Auxiliares.input_upper(mensagem))
             except ValueError:
-                print(msg.mensagem_atencao('Informe somente números decimais separados por ponto. Exemplo: "1.8".'))
+                print(msg.mensagem_erro('Informe somente números decimais separados por ponto. Exemplo: "1.8".'))
             else:
                 break
         return var
@@ -163,4 +163,4 @@ class Auxiliares:
                 else:
                     raise ValueError
             except ValueError:
-                print(msg.mensagem_atencao('Informe somente "S" ou "N".'))
+                print(msg.mensagem_erro('Informe somente "S" ou "N".'))

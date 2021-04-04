@@ -16,8 +16,8 @@ class Veiculo:
               f'    {fonte.verde("Modelo:")} {self.modelo}\n'
               f'    {fonte.verde("Velocidade:")} {self.velocidade}')
 
-    def acelerar(self, valor):
-        self.velocidade += valor
+    def acelerar(self, velocidade):
+        self.velocidade += velocidade
 
-    def frear(self, valor):
-        self.velocidade -= valor
+    def frear(self, velocidade):
+        self.velocidade -= velocidade

@@ -48,12 +48,28 @@ Pressione qualquer tecla para retornar ao menu anterior
 Escolha a opção desejada: ''')
 
 
+def return_marca():
+    return aux.input_upper(f'Informe a marca do veículo: ')
+
+
+def return_qtd_rodas():
+    return aux.input_int('Informe a quantidade de rodas: ')
+
+
+def return_modelo():
+    return aux.input_upper('Informe o modelo: ')
+
+
+def return_potencia_motor():
+    return aux.input_float('Informe a potência do motor: ')
+
+
 def cadastrar_bicicleta():
     aux.limpa_tela_menu('CADASTRO DE VEÍCULOS - BICICLETA\n')
 
-    marca = aux.input_upper('Informe a marca da bicicleta: ')
-    qtd_rodas = aux.input_int('Informe a quantidade de rodas: ')
-    modelo = aux.input_upper('Informe o modelo: ')
+    marca = return_marca()
+    qtd_rodas = return_qtd_rodas()
+    modelo = return_modelo()
     numero_marchas = aux.input_int('Informe o número de marchas: ')
     bagageiro = aux.validar_booleano('A bicicleta possui bagageiro? (S/n): ')
     return bici(marca, qtd_rodas, modelo, numero_marchas, bagageiro)
@@ -62,10 +78,10 @@ def cadastrar_bicicleta():
 def cadastrar_moto():
     aux.limpa_tela_menu('CADASTRO DE VEÍCULOS - MOTO\n')
 
-    marca = aux.input_upper('Informe a marca da moto: ')
-    qtd_rodas = aux.input_int('Informe a quantidade de rodas: ')
-    modelo = aux.input_upper('Informe o modelo: ')
-    potencia_motor = aux.input_float('Informe a potência do motor: ')
+    marca = return_marca()
+    qtd_rodas = return_qtd_rodas()
+    modelo = return_modelo()
+    potencia_motor = return_potencia_motor()
     partida_eletrica = aux.validar_booleano('A moto possui partida elétrica? (S/n): ')
     return moto(marca, qtd_rodas, modelo, potencia_motor, partida_eletrica)
 
@@ -73,10 +89,10 @@ def cadastrar_moto():
 def cadastrar_carro():
     aux.limpa_tela_menu('CADASTRO DE VEÍCULOS - CARRO\n')
 
-    marca = aux.input_upper('Informe a marca do carro: ')
-    qtd_rodas = aux.input_int('Informe a quantidade de rodas: ')
-    modelo = aux.input_upper('Informe o modelo: ')
-    potencia_motor = aux.input_float('Informe a potência do motor: ')
+    marca = return_marca()
+    qtd_rodas = return_qtd_rodas()
+    modelo = return_modelo()
+    potencia_motor = return_potencia_motor()
     qtd_portas = aux.input_int('Informe a quantidade de portas: ')
     return carro(marca, qtd_rodas, modelo, potencia_motor, qtd_portas)
 
@@ -85,8 +101,8 @@ def acelerar_veiculo():
     aux.limpa_tela_menu('ACELERAR VEÍCULO\n')
 
     try:
-        valor = aux.input_int('Informe o valor de aceleração: ')
-        veiculo.acelerar(int(valor))
+        velocidade = aux.input_int('Informe o valor de aceleração: ')
+        veiculo.acelerar(int(velocidade))
     except NameError:
         informar_veiculo_nao_cadastrado('ACELERAR VEÍCULO')
 
@@ -95,8 +111,8 @@ def frear_veiculo():
     aux.limpa_tela_menu('FREAR VEÍCULO\n')
 
     try:
-        valor = aux.input_int('Informe o valor de freagem: ')
-        veiculo.frear(int(valor))
+        velocidade = aux.input_int('Informe o valor de freagem: ')
+        veiculo.frear(int(velocidade))
     except NameError:
         informar_veiculo_nao_cadastrado('FREAR VEÍCULO')
 
@@ -124,7 +140,7 @@ while True:
     opcao = menu()
 
     if opcao == '0':
-        aux.finalizar_programa()
+        aux.finalizar_programa('MENU')
         break
     elif opcao == '1':
         opcao_veiculo = menu_veiculo()
@@ -144,4 +160,4 @@ while True:
     elif opcao == '4':
         imprimir_informacoes()
     else:
-        aux.opcao_invalida()
+        aux.opcao_invalida('MENU')
