@@ -12,10 +12,15 @@ from Classes.AlunoGraduacao import AlunoGraduacao as Grad
 from ClassesAuxiliares.Auxiliares import Auxiliares as Aux
 from ClassesAuxiliares.FormatarFontes import FormatarFontes as Fonte
 
+# Constantes para centralizar o nome dos menus
+MENU = 'MENU'
+CADASTRO = 'CADASTRO DE ALUNO |'
+IMPRIMIR = 'IMPRESSÃO DE ALUNO |'
+
 
 # Métodos referentes as opções do menu
-def menu():
-    Aux.limpa_tela_menu('MENU')
+def menu(desc_menu):
+    Aux.limpa_tela_menu(desc_menu)
 
     return input(f'''
     {Fonte.verde('0.')} Finalizar o programa
@@ -26,7 +31,7 @@ Escolha a opção desejada: ''')
 
 
 def cadastrar_aluno_graduacao():
-    Aux.limpa_tela_menu('CADASTRO DE ALUNO - GRADUAÇÃO\n')
+    Aux.limpa_tela_menu(f'{CADASTRO} GRADUAÇÃO\n')
 
     codigo = Aux.input_upper('Informe o código do aluno: ')
     nome = Aux.input_upper('Informe o nome: ')
@@ -37,7 +42,7 @@ def cadastrar_aluno_graduacao():
 
 
 def imprimir_aluno_graduacao(codigo, nome, matricula, semestre):
-    Aux.limpa_tela_menu('IMPRESSÃO DE ALUNO - GRADUAÇÃO\n')
+    Aux.limpa_tela_menu(f'{IMPRIMIR} GRADUAÇÃO\n')
 
     aluno_graduacao = Grad(codigo, nome, matricula, semestre)
     aluno_graduacao.imprimir()
@@ -47,7 +52,7 @@ def imprimir_aluno_graduacao(codigo, nome, matricula, semestre):
 
 
 def cadastrar_aluno_ens_medio():
-    Aux.limpa_tela_menu('CADASTRO DE ALUNO - ENSINO MÉDIO\n')
+    Aux.limpa_tela_menu(f'{CADASTRO} ENSINO MÉDIO\n')
 
     codigo = Aux.input_upper('Informe o código do aluno: ')
     nome = Aux.input_upper('Informe o nome: ')
@@ -58,7 +63,7 @@ def cadastrar_aluno_ens_medio():
 
 
 def imprimir_aluno_ens_medio(codigo, nome, matricula, ano):
-    Aux.limpa_tela_menu('IMPRESSÃO DE ALUNO - ENSINO MÉDIO\n')
+    Aux.limpa_tela_menu(f'{IMPRIMIR} ENSINO MÉDIO\n')
 
     aluno_ens_med = EnsMed(codigo, nome, matricula, ano)
     aluno_ens_med.imprimir()
@@ -69,14 +74,14 @@ def imprimir_aluno_ens_medio(codigo, nome, matricula, ano):
 
 # Programa
 while True:
-    opcao = menu()
+    opcao = menu(MENU)
 
     if opcao == '0':
-        Aux.finalizar_programa('MENU')
+        Aux.finalizar_programa(MENU)
         break
     elif opcao == '1':
         cadastrar_aluno_graduacao()
     elif opcao == '2':
         cadastrar_aluno_ens_medio()
     else:
-        Aux.opcao_invalida('MENU')
+        Aux.opcao_invalida(MENU)

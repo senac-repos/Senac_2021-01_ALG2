@@ -17,15 +17,15 @@ lista_produtos = ['ARROZ', 'FEIJAO', 'PAO', 'CARNE', 'FRANGO', 'BANANA', 'ALFACE
 lista_precos = ['4.99', '6.99', '4.99', '49.90', '19.90', '2.99', '0.90']
 lista_quantidades = ['10', '15', '20', '50', '50', '6', '10']
 
+# Constantes para centralizar o nome dos menus
+MENU = 'MENU'
+IMPRIMIR = 'IMPRESSÃO DE PRODUTO'
+REMOVER = 'REMOÇÃO DE PRODUTO'
+
 
 # Métodos referentes as opções do menu
-def menu():
-    """
-    Método utilizado para imprimir o menu do sistema
-
-    :return: retorna o menu de opções para o usuário
-    """
-    Aux.limpa_tela_menu('MENU')
+def menu(desc_menu):
+    Aux.limpa_tela_menu(desc_menu)
 
     return input(f'''
     {Fonte.verde('0.')} Finalizar o programa
@@ -36,25 +36,11 @@ Escolha a opção desejada: ''')
 
 
 def else_produto_invalido(produto):
-    """
-    Método utilizado para reaproveitar os dados quando o produto não existe
-
-    :param produto: recebe o nome do produto digitado pelo usuário
-    :return: irá retornar a informação de que o produto informado pelo usuário não existe, finalizando a ação
-    """
     Aux.print_mensagem(Msg.mensagem_erro(f'O produto "{produto}" não está cadastrado.'))
     Aux.print_mensagem('Operação cancelada.')
 
 
 def exibir_produtos_decidir_acao(descricao_menu, acao):
-    """
-    Método utilizado para imprimir a lista de produtos cadastrado e validar se o usuário está realizando a impressão
-    dos produtos para geração de relatórios ou deseja remover um produto existente
-
-    :param descricao_menu: recebe uma string com o nome do menu que deverá ser exibido
-    :param acao: recebe uma string para concatenar com a informação da pergunta feita ao usuário
-    :return: direciona o usuário a ação desejada utilizando somente um método
-    """
     Aux.limpa_tela_menu(descricao_menu)
 
     Aux.print_mensagem('Produtos cadastrados:')
@@ -63,27 +49,20 @@ def exibir_produtos_decidir_acao(descricao_menu, acao):
 
     Aux.inserir_nova_linha()
     produto = Aux.input_upper(f'Informe o nome do Produto que você deseja {acao}: ')
-    if 'IMPRESSÃO' in descricao_menu:
+    if IMPRIMIR in descricao_menu:
         selecionar_produto(produto)
     else:
         validar_produto(produto)
 
 
 def selecionar_produto(produto):
-    """
-    Método utilizado para validar se o produto informado pelo usuário existe na lista de produtos.
-    Se o produto existir irá imprimir os detalhes do produto solicitado pelo usuário de acordo com seu index
-
-    :param produto: recebe o nome do produto informado pelo usuário
-    :return: retorna o nome, preço e quantidade do produto solicitado pelo usuário
-    """
-    Aux.limpa_tela_menu('IMPRESSÃO DE PRODUTO')
+    Aux.limpa_tela_menu(IMPRIMIR)
 
     if produto in lista_produtos:
         produto_selecionado = lista_produtos.index(produto)
-        Aux.print_mensagem(f'   {Fonte.amarelo("Nome do produto:")}  {lista_produtos[produto_selecionado]}\n'
-                           f'   {Fonte.amarelo("Preço do produto:")} R$ {lista_precos[produto_selecionado]}\n'
-                           f'   {Fonte.amarelo("Quantidade:")}       {lista_quantidades[produto_selecionado]}')
+        Aux.print_mensagem(f'   {Fonte.verde("Nome do produto:")}  {lista_produtos[produto_selecionado]}\n'
+                           f'   {Fonte.verde("Preço do produto:")} R$ {lista_precos[produto_selecionado]}\n'
+                           f'   {Fonte.verde("Quantidade:")}       {lista_quantidades[produto_selecionado]}')
         Aux.inserir_nova_linha()
     else:
         else_produto_invalido(produto)
@@ -92,14 +71,7 @@ def selecionar_produto(produto):
 
 
 def validar_produto(produto):
-    """
-    Método utilizado para validar se o produto informado pelo usuário existe na lista de produtos.
-    Se o produto existir irá remover da lista todas as informações do produto de acordo com seu index
-
-    :param produto: recebe o nome do produto informado pelo usuário
-    :return: remove das listas todos os dados do produto informado pelo usuário conforme seu index
-    """
-    Aux.limpa_tela_menu('REMOÇÃO DE PRODUTO')
+    Aux.limpa_tela_menu(REMOVER)
 
     if produto in lista_produtos:
         produto_selecionado = lista_produtos.index(produto)
@@ -117,14 +89,14 @@ def validar_produto(produto):
 
 # Programa
 while True:
-    opcao = menu()
+    opcao = menu(MENU)
 
     if opcao == '0':
-        Aux.finalizar_programa('MENU')
+        Aux.finalizar_programa(MENU)
         break
     elif opcao == '1':
-        exibir_produtos_decidir_acao('IMPRESSÃO DE PRODUTO', 'imprimir')
+        exibir_produtos_decidir_acao(IMPRIMIR, 'imprimir')
     elif opcao == '2':
-        exibir_produtos_decidir_acao('REMOÇÃO DE PRODUTO', 'remover')
+        exibir_produtos_decidir_acao(REMOVER, 'remover')
     else:
-        Aux.opcao_invalida('MENU')
+        Aux.opcao_invalida(MENU)
