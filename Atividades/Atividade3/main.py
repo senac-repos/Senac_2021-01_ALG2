@@ -16,9 +16,11 @@ from ClassesAuxiliares.Mensagens import Mensagens as Msg
 
 # Constantes para centralizar o nome dos menus
 MENU = 'MENU'
-CADASTRO = 'CADASTRO DE'
-FREAR = 'FREAR VEÍCULO'
+CADASTRO_BICICLETA = 'CADASTRO DE BICICLETA'
+CADASTRO_MOTO = 'CADASTRO DE MOTOCICLETA'
+CADASTRO_CARRO = 'CADASTRO DE CARRO'
 ACELERAR = 'ACELERAR VEÍCULO'
+FREAR = 'FREAR VEÍCULO'
 IMPRIMIR = 'IMPRESSÃO DE INFORMAÇÕES'
 
 
@@ -66,30 +68,33 @@ def return_potencia_motor():
     return Aux.input_float('Informe a potência do motor: ')
 
 
-def cadastrar_bicicleta():
-    Aux.limpa_tela_menu(f'{CADASTRO} BICICLETA\n')
+def cadastrar_bicicleta(desc_menu):
+    Aux.limpa_tela_menu(desc_menu)
+    Aux.inserir_nova_linha()
 
     marca = return_marca()
     qtd_rodas = return_qtd_rodas()
     modelo = return_modelo()
     numero_marchas = Aux.input_int('Informe o número de marchas: ')
-    bagageiro = Aux.validar_booleano('A bicicleta possui bagageiro? (S/n): ')
+    bagageiro = Aux.input_bool('A bicicleta possui bagageiro? (S/n): ')
     return Bike(marca, qtd_rodas, modelo, numero_marchas, bagageiro)
 
 
-def cadastrar_moto():
-    Aux.limpa_tela_menu(f'{CADASTRO} MOTOCICLETA\n')
+def cadastrar_moto(desc_menu):
+    Aux.limpa_tela_menu(desc_menu)
+    Aux.inserir_nova_linha()
 
     marca = return_marca()
     qtd_rodas = return_qtd_rodas()
     modelo = return_modelo()
     potencia_motor = return_potencia_motor()
-    partida_eletrica = Aux.validar_booleano('A moto possui partida elétrica? (S/n): ')
+    partida_eletrica = Aux.input_bool('A moto possui partida elétrica? (S/n): ')
     return Moto(marca, qtd_rodas, modelo, potencia_motor, partida_eletrica)
 
 
-def cadastrar_carro():
-    Aux.limpa_tela_menu(f'{CADASTRO} CARRO\n')
+def cadastrar_carro(desc_menu):
+    Aux.limpa_tela_menu(desc_menu)
+    Aux.inserir_nova_linha()
 
     marca = return_marca()
     qtd_rodas = return_qtd_rodas()
@@ -99,8 +104,9 @@ def cadastrar_carro():
     return Carro(marca, qtd_rodas, modelo, potencia_motor, qtd_portas)
 
 
-def acelerar_veiculo():
-    Aux.limpa_tela_menu(f'{ACELERAR}\n')
+def acelerar_veiculo(desc_menu):
+    Aux.limpa_tela_menu(desc_menu)
+    Aux.inserir_nova_linha()
 
     try:
         velocidade = Aux.input_int('Informe o valor de aceleração: ')
@@ -109,8 +115,9 @@ def acelerar_veiculo():
         informar_veiculo_nao_cadastrado(ACELERAR)
 
 
-def frear_veiculo():
-    Aux.limpa_tela_menu(f'{FREAR}\n')
+def frear_veiculo(desc_menu):
+    Aux.limpa_tela_menu(desc_menu)
+    Aux.inserir_nova_linha()
 
     try:
         velocidade = Aux.input_int('Informe o valor de freagem: ')
@@ -119,8 +126,9 @@ def frear_veiculo():
         informar_veiculo_nao_cadastrado(FREAR)
 
 
-def imprimir_informacoes():
-    Aux.limpa_tela_menu(f'{IMPRIMIR}\n')
+def imprimir_informacoes(desc_menu):
+    Aux.limpa_tela_menu(desc_menu)
+    Aux.inserir_nova_linha()
 
     try:
         veiculo.imprimir_informacoes()
@@ -130,8 +138,8 @@ def imprimir_informacoes():
         informar_veiculo_nao_cadastrado(IMPRIMIR)
 
 
-def informar_veiculo_nao_cadastrado(nome_menu):
-    Aux.limpa_tela_menu(nome_menu)
+def informar_veiculo_nao_cadastrado(desc_menu):
+    Aux.limpa_tela_menu(desc_menu)
 
     Aux.print_mensagem(Msg.mensagem_atencao('Ainda não existe nenhum veículo cadastrado.'))
     Aux.inserir_nova_linha()
@@ -149,18 +157,18 @@ while True:
         opcao_veiculo = menu_veiculo(MENU)
 
         if opcao_veiculo == '1':
-            veiculo = cadastrar_bicicleta()
+            veiculo = cadastrar_bicicleta(CADASTRO_BICICLETA)
         elif opcao_veiculo == '2':
-            veiculo = cadastrar_moto()
+            veiculo = cadastrar_moto(CADASTRO_MOTO)
         elif opcao_veiculo == '3':
-            veiculo = cadastrar_carro()
+            veiculo = cadastrar_carro(CADASTRO_CARRO)
         else:
             pass
     elif opcao == '2':
-        acelerar_veiculo()
+        acelerar_veiculo(ACELERAR)
     elif opcao == '3':
-        frear_veiculo()
+        frear_veiculo(FREAR)
     elif opcao == '4':
-        imprimir_informacoes()
+        imprimir_informacoes(IMPRIMIR)
     else:
         Aux.opcao_invalida(MENU)

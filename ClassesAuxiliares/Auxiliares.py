@@ -44,17 +44,17 @@ class Auxiliares:
         time.sleep(1)
 
     @staticmethod
-    def input_upper(mensagem):
+    def valida_input(mensagem):
         """
-        Método utilizado para transformar todos os inputs utilizados em uppercase.
+        Método utilizado apenas para validar se o foi preenchido.
         Este método entra em loop até que o usuário informe um valor válido (não nulo) no campo.
 
         :param mensagem: recebe uma string que irá representar um texto.
-        :return: retorna a informação atribuída a uma variável em uppercase.
+        :return: retorna a informação atribuída a uma variável caso o retorno não seja nulo.
         """
         while True:
             try:
-                var = input(mensagem).upper()
+                var = input(mensagem)
                 if var == '' or var is None:
                     raise ValueError
             except ValueError:
@@ -62,6 +62,16 @@ class Auxiliares:
             else:
                 break
         return var
+
+    @staticmethod
+    def input_upper(mensagem):
+        """
+        Método utilizado para transformar todos os inputs utilizados em uppercase.
+
+        :param mensagem: recebe uma string que irá representar um texto.
+        :return: retorna a informação atribuída a uma variável em uppercase.
+        """
+        return Auxiliares.valida_input(mensagem).upper()
 
     @staticmethod
     def input_int(mensagem):
@@ -74,7 +84,7 @@ class Auxiliares:
         """
         while True:
             try:
-                var = int(Auxiliares.input_upper(mensagem))
+                var = int(Auxiliares.valida_input(mensagem))
             except ValueError:
                 print(Msg.mensagem_erro('Informe somente números inteiros.'))
             else:
@@ -92,12 +102,36 @@ class Auxiliares:
         """
         while True:
             try:
-                var = float(Auxiliares.input_upper(mensagem))
+                var = float(Auxiliares.valida_input(mensagem))
             except ValueError:
                 print(Msg.mensagem_erro('Informe somente números decimais separados por ponto. Exemplo: "1.8".'))
             else:
                 break
         return var
+
+    @staticmethod
+    def input_bool(mensagem):
+        """
+        Método utilizado para validar se o usuário está informando True ou False em uma variável.
+        Caso o usuário informe "S", o sistema irá retornar "True".
+        Caso o usuário informe "N", o sistema irá retornar "False".
+        Este método entra em loop até que o usuário informe "S" ou "N".
+
+        :param mensagem: recebe uma string que irá representar um texto.
+        :return: irá informar ao construtor das classes a informação True ou False de acordo com a informação do
+        usuário.
+        """
+        while True:
+            try:
+                var = Auxiliares.valida_input(mensagem)
+                if var == 'S':
+                    return True
+                elif var == 'N':
+                    return False
+                else:
+                    raise ValueError
+            except ValueError:
+                print(Msg.mensagem_erro('Informe somente "S" ou "N".'))
 
     @staticmethod
     def print_mensagem(mensagem):
@@ -141,27 +175,3 @@ class Auxiliares:
             return "Sim"
         else:
             return "Não"
-
-    @staticmethod
-    def validar_booleano(mensagem):
-        """
-        Método utilizado para validar se o usuário está informando True ou False em uma variável.
-        Caso o usuário informe "S", o sistema irá retornar "True".
-        Caso o usuário informe "N", o sistema irá retornar "False".
-        Este método entra em loop até que o usuário informe "S" ou "N".
-
-        :param mensagem: recebe uma string que irá representar um texto.
-        :return: irá informar ao construtor das classes a informação True ou False de acordo com a informação do
-        usuário.
-        """
-        while True:
-            try:
-                var = Auxiliares.input_upper(f'{mensagem}')
-                if var == 'S':
-                    return True
-                elif var == 'N':
-                    return False
-                else:
-                    raise ValueError
-            except ValueError:
-                print(Msg.mensagem_erro('Informe somente "S" ou "N".'))
