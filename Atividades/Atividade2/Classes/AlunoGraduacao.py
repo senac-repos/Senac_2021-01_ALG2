@@ -1,5 +1,7 @@
 from Atividades.Atividade2.Classes.Aluno import Aluno
-from ClassesAuxiliares.FormatarFontes import FormatarFontes as Fonte
+from ClassesAuxiliares.FormatarFontes import FormatarFontes
+
+fonte = FormatarFontes()
 
 
 class AlunoGraduacao(Aluno):
@@ -8,7 +10,7 @@ class AlunoGraduacao(Aluno):
         self.semestre = semestre
 
     def imprimir(self):
-        print(f'    {Fonte.verde("Código do aluno:")} {self.codigo}\n'
-              f'    {Fonte.verde("Nome:")} {self.nome}\n'
-              f'    {Fonte.verde("Matrícula:")} {self.matricula}\n'
-              f'    {Fonte.verde("Semestre:")} {self.semestre}')
+        print(f'    {fonte.verde("Código do aluno:")} {self.codigo}\n'
+              f'    {fonte.verde("Nome:")} {self.nome}\n'
+              f'    {fonte.verde("Matrícula:")} {self.matricula}\n'
+              f'    {fonte.verde("Semestre:")} {self.semestre}')

@@ -1,4 +1,10 @@
-from ClassesAuxiliares.FormatarFontes import FormatarFontes as Fonte
+# encoding: utf-8
+# Autor: Thiago Martins Proença
+# Data de criação: março/2021
+
+from ClassesAuxiliares.FormatarFontes import FormatarFontes
+
+fonte = FormatarFontes()
 
 
 class Mensagens:
@@ -11,7 +17,7 @@ class Mensagens:
         :param mensagem: recebe uma string que irá representar a mensagem ao usuário.
         :return: retorna uma mensagem em amarelo para o usuário com o título "Atenção!".
         """
-        return Fonte.amarelo(f'Atenção! {mensagem}')
+        return fonte.amarelo(f'Atenção! {mensagem}')
 
     @staticmethod
     def mensagem_erro(mensagem):
@@ -22,7 +28,7 @@ class Mensagens:
         :param mensagem: recebe uma string que irá representar a mensagem ao usuário.
         :return: retorna uma mensagem em vermelho para o usuário com o título "Ops!".
         """
-        return Fonte.vermelho(f'Ops! {mensagem}')
+        return fonte.vermelho(f'Ops! {mensagem}')
 
     @staticmethod
     def mensagem_sucesso(mensagem):
@@ -33,4 +39,4 @@ class Mensagens:
         :param mensagem: recebe uma string que irá representar a mensagem ao usuário.
         :return: retorna uma mensagem em verde para o usuário com o título "Sucesso!".
         """
-        return Fonte.verde(f'Sucesso! {mensagem}')
+        return fonte.verde(f'Sucesso! {mensagem}')

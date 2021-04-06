@@ -1,3 +1,7 @@
+# encoding: utf-8
+# Autor: Thiago Martins Proença
+# Data de criação: março/2021
+
 class FormatarFontes:
     """
     Os métodos desta classe são utilizados apenas para formatar a fonte de apresentação do código no console.

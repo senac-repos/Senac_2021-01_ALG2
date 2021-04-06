@@ -1,8 +1,15 @@
+# encoding: utf-8
+# Autor: Thiago Martins Proença
+# Data de criação: março/2021
+
 import os
 import time
 
-from ClassesAuxiliares.FormatarFontes import FormatarFontes as Fonte
-from ClassesAuxiliares.Mensagens import Mensagens as Msg
+from ClassesAuxiliares.FormatarFontes import FormatarFontes
+from ClassesAuxiliares.Mensagens import Mensagens
+
+fonte = FormatarFontes()
+msg = Mensagens()
 
 
 class Auxiliares:
@@ -16,7 +23,7 @@ class Auxiliares:
         :return: limpa a tela e retorna o nome do menu escolhido pelo usuário.
         """
         os.system('clear') or None
-        return print(Fonte.negrito(mensagem))
+        return print(fonte.negrito(mensagem))
 
     @staticmethod
     def finalizar_programa(nome_menu):
@@ -27,8 +34,10 @@ class Auxiliares:
         chamado.
         :return: retorna a mensagem "Programa finalizado. Obrigado!" na cor verde para o usuário.
         """
-        Auxiliares.limpa_tela_menu(f'{nome_menu}\n')
-        print(Fonte.verde('Programa finalizado.'))
+        Auxiliares.limpa_tela_menu(nome_menu)
+        Auxiliares.inserir_nova_linha()
+
+        print(fonte.verde('Programa finalizado.'))
 
     @staticmethod
     def opcao_invalida(nome_menu):
@@ -39,8 +48,10 @@ class Auxiliares:
         chamado.
         :return: retorna ao usuário que a opção informada no menu é inválida.
         """
-        Auxiliares.limpa_tela_menu(f'{nome_menu}\n')
-        print(Msg.mensagem_erro('Opção inválida.'))
+        Auxiliares.limpa_tela_menu(nome_menu)
+        Auxiliares.inserir_nova_linha()
+
+        print(msg.mensagem_erro('Opção inválida.'))
         time.sleep(1)
 
     @staticmethod
@@ -58,7 +69,7 @@ class Auxiliares:
                 if var == '' or var is None:
                     raise ValueError
             except ValueError:
-                print(Msg.mensagem_atencao('O campo não pode ser nulo.'))
+                print(msg.mensagem_atencao('O campo não pode ser nulo.'))
             else:
                 break
         return var
@@ -86,7 +97,7 @@ class Auxiliares:
             try:
                 var = int(Auxiliares.valida_input(mensagem))
             except ValueError:
-                print(Msg.mensagem_erro('Informe somente números inteiros.'))
+                print(msg.mensagem_erro('Informe somente números inteiros.'))
             else:
                 break
         return var
@@ -104,7 +115,7 @@ class Auxiliares:
             try:
                 var = float(Auxiliares.valida_input(mensagem))
             except ValueError:
-                print(Msg.mensagem_erro('Informe somente números decimais separados por ponto. Exemplo: "1.8".'))
+                print(msg.mensagem_erro('Informe somente números decimais separados por ponto. Exemplo: "1.8".'))
             else:
                 break
         return var
@@ -123,7 +134,7 @@ class Auxiliares:
         """
         while True:
             try:
-                var = Auxiliares.valida_input(mensagem)
+                var = Auxiliares.input_upper(mensagem)
                 if var == 'S':
                     return True
                 elif var == 'N':
@@ -131,7 +142,7 @@ class Auxiliares:
                 else:
                     raise ValueError
             except ValueError:
-                print(Msg.mensagem_erro('Informe somente "S" ou "N".'))
+                print(msg.mensagem_erro('Informe somente "S" ou "N".'))
 
     @staticmethod
     def print_mensagem(mensagem):
@@ -141,7 +152,8 @@ class Auxiliares:
         :param mensagem: recebe uma string que irá representar um texto.
         :return: retorna a string digitada em uma linha com a linha acima vazia.
         """
-        return print(f'\n{mensagem}')
+        Auxiliares.inserir_nova_linha()
+        return print(mensagem)
 
     @staticmethod
     def pressionar_enter():
@@ -151,7 +163,7 @@ class Auxiliares:
         :return: retorna uma mensagem ao usuário solicitando que pressione a tecla ENTER para continuar a utilizar o
         sistema.
         """
-        return input(f'Pressione {Fonte.negrito("ENTER")} para continuar.')
+        return input(f'Pressione {fonte.negrito("ENTER")} para continuar.')
 
     @staticmethod
     def inserir_nova_linha():
@@ -167,11 +179,8 @@ class Auxiliares:
         """
         Método utilizado para traduzir registros booleanos para string.
 
-        :param booleano: coleta a informação existe (True ou False).
+        :param booleano: coleta a informação existente (True ou False).
         :return: caso a informação existente seja "True", este método irá converter a informação para "Sim".
         Se for "False", irá converter para "Não".
         """
-        if booleano:
-            return "Sim"
-        else:
-            return "Não"
+        return 'Sim' if booleano else 'Não'

@@ -8,9 +8,13 @@ Construir uma função para imprimir um dos produtos da lista e uma função par
 """
 
 # Imports
-from ClassesAuxiliares.Auxiliares import Auxiliares as Aux
-from ClassesAuxiliares.FormatarFontes import FormatarFontes as Fonte
-from ClassesAuxiliares.Mensagens import Mensagens as Msg
+from ClassesAuxiliares.Auxiliares import Auxiliares
+from ClassesAuxiliares.FormatarFontes import FormatarFontes
+from ClassesAuxiliares.Mensagens import Mensagens
+
+aux = Auxiliares()
+fonte = FormatarFontes()
+msg = Mensagens()
 
 # Variáveis globais
 lista_produtos = ['ARROZ', 'FEIJAO', 'PAO', 'CARNE', 'FRANGO', 'BANANA', 'ALFACE']
@@ -25,30 +29,30 @@ REMOVER = 'REMOÇÃO DE PRODUTO'
 
 # Métodos referentes as opções do menu
 def menu(desc_menu):
-    Aux.limpa_tela_menu(desc_menu)
+    aux.limpa_tela_menu(desc_menu)
 
     return input(f'''
-    {Fonte.verde('0.')} Finalizar o programa
-    {Fonte.verde('1.')} Imprimir um produto específico
-    {Fonte.verde('2.')} Remover um produto específico
+    {fonte.verde('0.')} Finalizar o programa
+    {fonte.verde('1.')} Imprimir um produto específico
+    {fonte.verde('2.')} Remover um produto específico
 
 Escolha a opção desejada: ''')
 
 
 def else_produto_invalido(produto):
-    Aux.print_mensagem(Msg.mensagem_erro(f'O produto "{produto}" não está cadastrado.'))
-    Aux.print_mensagem('Operação cancelada.')
+    aux.print_mensagem(msg.mensagem_erro(f'O produto "{produto}" não está cadastrado.'))
+    aux.print_mensagem('Operação cancelada.')
 
 
 def exibir_produtos_decidir_acao(descricao_menu, acao):
-    Aux.limpa_tela_menu(descricao_menu)
+    aux.limpa_tela_menu(descricao_menu)
 
-    Aux.print_mensagem('Produtos cadastrados:')
+    aux.print_mensagem('Produtos cadastrados:')
     for i in lista_produtos:
         print(f'    {i}')
 
-    Aux.inserir_nova_linha()
-    produto = Aux.input_upper(f'Informe o nome do Produto que você deseja {acao}: ')
+    aux.inserir_nova_linha()
+    produto = aux.input_upper(f'Informe o nome do Produto que você deseja {acao}: ')
     if IMPRIMIR in descricao_menu:
         selecionar_produto(produto)
     else:
@@ -56,22 +60,22 @@ def exibir_produtos_decidir_acao(descricao_menu, acao):
 
 
 def selecionar_produto(produto):
-    Aux.limpa_tela_menu(IMPRIMIR)
+    aux.limpa_tela_menu(IMPRIMIR)
 
     if produto in lista_produtos:
         produto_selecionado = lista_produtos.index(produto)
-        Aux.print_mensagem(f'   {Fonte.verde("Nome do produto:")}  {lista_produtos[produto_selecionado]}\n'
-                           f'   {Fonte.verde("Preço do produto:")} R$ {lista_precos[produto_selecionado]}\n'
-                           f'   {Fonte.verde("Quantidade:")}       {lista_quantidades[produto_selecionado]}')
-        Aux.inserir_nova_linha()
+        aux.print_mensagem(f'   {fonte.verde("Nome do produto:")}  {lista_produtos[produto_selecionado]}\n'
+                           f'   {fonte.verde("Preço do produto:")} R$ {lista_precos[produto_selecionado]}\n'
+                           f'   {fonte.verde("Quantidade:")}       {lista_quantidades[produto_selecionado]}')
+        aux.inserir_nova_linha()
     else:
         else_produto_invalido(produto)
 
-    Aux.pressionar_enter()
+    aux.pressionar_enter()
 
 
 def validar_produto(produto):
-    Aux.limpa_tela_menu(REMOVER)
+    aux.limpa_tela_menu(REMOVER)
 
     if produto in lista_produtos:
         produto_selecionado = lista_produtos.index(produto)
@@ -79,12 +83,12 @@ def validar_produto(produto):
         lista_precos.pop(produto_selecionado)
         lista_quantidades.pop(produto_selecionado)
 
-        Aux.print_mensagem(Msg.mensagem_sucesso('O produto foi removido da lista.'))
-        Aux.inserir_nova_linha()
+        aux.print_mensagem(msg.mensagem_sucesso('O produto foi removido da lista.'))
+        aux.inserir_nova_linha()
     else:
         else_produto_invalido(produto)
 
-    Aux.pressionar_enter()
+    aux.pressionar_enter()
 
 
 # Programa
@@ -92,11 +96,11 @@ while True:
     opcao = menu(MENU)
 
     if opcao == '0':
-        Aux.finalizar_programa(MENU)
+        aux.finalizar_programa(MENU)
         break
     elif opcao == '1':
         exibir_produtos_decidir_acao(IMPRIMIR, 'imprimir')
     elif opcao == '2':
         exibir_produtos_decidir_acao(REMOVER, 'remover')
     else:
-        Aux.opcao_invalida(MENU)
+        aux.opcao_invalida(MENU)
