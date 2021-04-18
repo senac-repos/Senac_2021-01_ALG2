@@ -54,7 +54,6 @@ def imprimir_aluno_graduacao(codigo, nome, matricula, semestre):
     aluno_graduacao = Grad(codigo, nome, matricula, semestre)
     aluno_graduacao.imprimir()
 
-    aux.inserir_nova_linha()
     aux.pressionar_enter()
 
 
@@ -77,7 +76,6 @@ def imprimir_aluno_ens_medio(codigo, nome, matricula, ano):
     aluno_ens_med = EnsMed(codigo, nome, matricula, ano)
     aluno_ens_med.imprimir()
 
-    aux.inserir_nova_linha()
     aux.pressionar_enter()
 
 

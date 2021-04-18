@@ -35,9 +35,7 @@ class Auxiliares:
         :return: retorna a mensagem "Programa finalizado. Obrigado!" na cor verde para o usuário.
         """
         Auxiliares.limpa_tela_menu(nome_menu)
-        Auxiliares.inserir_nova_linha()
-
-        print(fonte.verde('Programa finalizado.'))
+        Auxiliares.print_mensagem(fonte.verde('Programa finalizado.'))
 
     @staticmethod
     def opcao_invalida(nome_menu):
@@ -49,9 +47,7 @@ class Auxiliares:
         :return: retorna ao usuário que a opção informada no menu é inválida.
         """
         Auxiliares.limpa_tela_menu(nome_menu)
-        Auxiliares.inserir_nova_linha()
-
-        print(msg.mensagem_erro('Opção inválida.'))
+        Auxiliares.print_mensagem(msg.mensagem_erro('Opção inválida.'))
         time.sleep(1)
 
     @staticmethod
@@ -163,6 +159,7 @@ class Auxiliares:
         :return: retorna uma mensagem ao usuário solicitando que pressione a tecla ENTER para continuar a utilizar o
         sistema.
         """
+        Auxiliares.inserir_nova_linha()
         return input(f'Pressione {fonte.negrito("ENTER")} para continuar.')
 
     @staticmethod

@@ -41,7 +41,7 @@ Escolha a opção desejada: ''')
 
 def else_produto_invalido(produto):
     aux.print_mensagem(msg.mensagem_erro(f'O produto "{produto}" não está cadastrado.'))
-    aux.print_mensagem('Operação cancelada.')
+    msg.operacao_cancelada()
 
 
 def exibir_produtos_decidir_acao(descricao_menu, acao):
@@ -67,7 +67,6 @@ def selecionar_produto(produto):
         aux.print_mensagem(f'   {fonte.verde("Nome do produto:")}  {lista_produtos[produto_selecionado]}\n'
                            f'   {fonte.verde("Preço do produto:")} R$ {lista_precos[produto_selecionado]}\n'
                            f'   {fonte.verde("Quantidade:")}       {lista_quantidades[produto_selecionado]}')
-        aux.inserir_nova_linha()
     else:
         else_produto_invalido(produto)
 
@@ -84,7 +83,6 @@ def validar_produto(produto):
         lista_quantidades.pop(produto_selecionado)
 
         aux.print_mensagem(msg.mensagem_sucesso('O produto foi removido da lista.'))
-        aux.inserir_nova_linha()
     else:
         else_produto_invalido(produto)
 

@@ -38,7 +38,7 @@ def menu(desc_menu):
     {fonte.verde('2.')} Acelerar
     {fonte.verde('3.')} Frear
     {fonte.verde('4.')} Imprimir informações
-
+ 
 Escolha a opção desejada: ''')
 
 
@@ -140,7 +140,6 @@ def imprimir_informacoes(desc_menu):
 
     try:
         veiculo.imprimir_informacoes()
-        aux.inserir_nova_linha()
         aux.pressionar_enter()
     except NameError:
         informar_veiculo_nao_cadastrado(IMPRIMIR)
@@ -148,7 +147,6 @@ def imprimir_informacoes(desc_menu):
 
 def acao_veiculo(mensagem):
     aux.print_mensagem(msg.mensagem_sucesso(mensagem))
-    aux.inserir_nova_linha()
     aux.pressionar_enter()
 
 
@@ -156,7 +154,6 @@ def informar_veiculo_nao_cadastrado(desc_menu):
     aux.limpa_tela_menu(desc_menu)
 
     aux.print_mensagem(msg.mensagem_atencao('Ainda não existe nenhum veículo cadastrado.'))
-    aux.inserir_nova_linha()
     aux.pressionar_enter()
 
 

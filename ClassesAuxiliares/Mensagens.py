@@ -40,3 +40,12 @@ class Mensagens:
         :return: retorna uma mensagem em verde para o usuário com o título "Sucesso!".
         """
         return fonte.verde(f'Sucesso! {mensagem}')
+
+    @staticmethod
+    def operacao_cancelada():
+        """
+        Método utilizado para informar ao usuário que a operação que estava sendo realizada foi cancelada.
+
+        :return: retorna a mensagem "Operação cancelada." para o usuário.
+        """
+        return print('Operação cancelada.')
