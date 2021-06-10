@@ -5,21 +5,21 @@ inseridos.
 """
 
 # Imports
-from Classes.Lista import Lista
+from Classes.Pilha import Pilha
 from ClassesAuxiliares.AuxMethods import AuxMethods
 from ClassesAuxiliares.FormatFonts import FormatFonts
 from ClassesAuxiliares.Messages import Messages
 
-lista = Lista()
+pilha = Pilha()
 aux = AuxMethods()
 fonte = FormatFonts()
 msg = Messages()
 
 # Constantes para centralizar o nome dos menus
 MENU = 'MENU'
-ADICIONAR = 'ADICIONAR ITEM NA LISTA'
-IMPRIMIR = 'LISTA DUPLAMENTE ENCADEADA'
-IMPRIMIR_INVERTIDO = 'LISTA DUPLAMENTE ENCADEADA INVERTIDA'
+ADICIONAR = 'ADICIONAR ITEM NA PILHA'
+REMOVER = 'REMOVER ITEM NA PILHA'
+IMPRIMIR = 'IMPRIMIR PILHA'
 
 
 # Métodos referentes as opções dos menus
@@ -28,9 +28,9 @@ def menu(desc_menu):
 
     return input(f'''
     {fonte.green('0.')} Finalizar o programa
-    {fonte.green('1.')} Adicionar
-    {fonte.green('2.')} Imprimir
-    {fonte.green('3.')} Imprimir invertido
+    {fonte.green('1.')} Adicionar ao topo
+    {fonte.green('2.')} Remover do topo
+    {fonte.green('3.')} Imprimir topo da Pilha
 
 Escolha a opção desejada: ''')
 
@@ -39,13 +39,22 @@ def adicionar_item(desc_menu):
     aux.clear_screen_menu(desc_menu)
     aux.insert_line()
 
-    numero = 1
-    while numero <= 5:
-        add = aux.input_int(f'Informe o {numero}º número a ser adicionado: ')
-        lista.adicionar(add)
-        numero += 1
+    add = aux.input_int(f'Informe um número: ')
+    pilha.adicionar(add)
 
-    aux.print_message('Números adicionados com sucesso.')
+    aux.print_message('Número adicionado ao topo da pilha com sucesso.')
+    aux.press_enter()
+
+
+def remover_item(desc_menu):
+    aux.clear_screen_menu(desc_menu)
+    aux.insert_line()
+
+    if pilha.__len__() == 0:
+        print('A lista está vazia.')
+    else:
+        pilha.remover()
+        print('Número removido do topo da pilha com sucesso.')
     aux.press_enter()
 
 
@@ -53,21 +62,14 @@ def imprimir(desc_menu):
     aux.clear_screen_menu(desc_menu)
     aux.insert_line()
 
-    if lista.lista_vazia():
+    if pilha.__len__() == 0:
         print('A lista está vazia.')
     else:
-        lista.imprimir()
-    aux.press_enter()
+        print('O topo da lista é:')
+        pilha.imprimir_topo()
 
-
-def imprimir_invertido(desc_menu):
-    aux.clear_screen_menu(desc_menu)
-    aux.insert_line()
-
-    if lista.lista_vazia():
-        print('A lista está vazia.')
-    else:
-        lista.imprimir_invertido()
+        aux.print_message('Itens da lista:')
+        print(pilha)
     aux.press_enter()
 
 
@@ -81,8 +83,8 @@ while True:
     elif opcao == '1':
         adicionar_item(ADICIONAR)
     elif opcao == '2':
-        imprimir(IMPRIMIR)
+        remover_item(REMOVER)
     elif opcao == '3':
-        imprimir_invertido(IMPRIMIR_INVERTIDO)
+        imprimir(IMPRIMIR)
     else:
         aux.invalid_option(MENU)

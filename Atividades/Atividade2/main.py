@@ -9,11 +9,11 @@ o método imprimir, que imprime na tela os valores de todos os atributos da sua 
 # Imports
 from Classes.AlunoEnsinoMedio import AlunoEnsinoMedio as EnsMed
 from Classes.AlunoGraduacao import AlunoGraduacao as Grad
-from ClassesAuxiliares.Auxiliares import Auxiliares
-from ClassesAuxiliares.FormatarFontes import FormatarFontes
+from ClassesAuxiliares.AuxMethods import AuxMethods
+from ClassesAuxiliares.FormatFonts import FormatFonts
 
-aux = Auxiliares()
-fonte = FormatarFontes()
+aux = AuxMethods()
+fonte = FormatFonts()
 
 # Constantes para centralizar o nome dos menus
 MENU = 'MENU'
@@ -25,19 +25,19 @@ IMPRIMIR_ENS_MED = 'IMPRESSÃO DE ALUNO ENSINO MÉDIO'
 
 # Métodos referentes as opções do menu
 def menu(desc_menu):
-    aux.limpa_tela_menu(desc_menu)
+    aux.clear_screen_menu(desc_menu)
 
     return input(f'''
-    {fonte.verde('0.')} Finalizar o programa
-    {fonte.verde('1.')} Cadastrar Aluno de Graduação
-    {fonte.verde('2.')} Cadastrar Aluno de Ensino Médio
+    {fonte.green('0.')} Finalizar o programa
+    {fonte.green('1.')} Cadastrar Aluno de Graduação
+    {fonte.green('2.')} Cadastrar Aluno de Ensino Médio
 
 Escolha a opção desejada: ''')
 
 
 def cadastrar_aluno_graduacao(desc_menu):
-    aux.limpa_tela_menu(desc_menu)
-    aux.inserir_nova_linha()
+    aux.clear_screen_menu(desc_menu)
+    aux.insert_line()
 
     codigo = aux.input_upper('Informe o código do aluno: ')
     nome = aux.input_upper('Informe o nome: ')
@@ -48,18 +48,18 @@ def cadastrar_aluno_graduacao(desc_menu):
 
 
 def imprimir_aluno_graduacao(codigo, nome, matricula, semestre):
-    aux.limpa_tela_menu(IMPRIMIR_GRAD)
-    aux.inserir_nova_linha()
+    aux.clear_screen_menu(IMPRIMIR_GRAD)
+    aux.insert_line()
 
     aluno_graduacao = Grad(codigo, nome, matricula, semestre)
     aluno_graduacao.imprimir()
 
-    aux.pressionar_enter()
+    aux.press_enter()
 
 
 def cadastrar_aluno_ens_medio(desc_menu):
-    aux.limpa_tela_menu(desc_menu)
-    aux.inserir_nova_linha()
+    aux.clear_screen_menu(desc_menu)
+    aux.insert_line()
 
     codigo = aux.input_upper('Informe o código do aluno: ')
     nome = aux.input_upper('Informe o nome: ')
@@ -70,13 +70,13 @@ def cadastrar_aluno_ens_medio(desc_menu):
 
 
 def imprimir_aluno_ens_medio(codigo, nome, matricula, ano):
-    aux.limpa_tela_menu(IMPRIMIR_ENS_MED)
-    aux.inserir_nova_linha()
+    aux.clear_screen_menu(IMPRIMIR_ENS_MED)
+    aux.insert_line()
 
     aluno_ens_med = EnsMed(codigo, nome, matricula, ano)
     aluno_ens_med.imprimir()
 
-    aux.pressionar_enter()
+    aux.press_enter()
 
 
 # Programa
@@ -84,11 +84,11 @@ while True:
     opcao = menu(MENU)
 
     if opcao == '0':
-        aux.finalizar_programa(MENU)
+        aux.finish_program(MENU)
         break
     elif opcao == '1':
         cadastrar_aluno_graduacao(CADASTRO_GRAD)
     elif opcao == '2':
         cadastrar_aluno_ens_medio(CADASTRO_ENS_MED)
     else:
-        aux.opcao_invalida(MENU)
+        aux.invalid_option(MENU)

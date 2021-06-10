@@ -2,7 +2,7 @@
 # Autor: Thiago Martins Proença
 # Data de criação: março/2021
 
-class FormatarFontes:
+class FormatFonts:
     """
     Os métodos desta classe são utilizados apenas para formatar a fonte de apresentação do código no console.
     Para maiores informações, acesse:
@@ -10,17 +10,17 @@ class FormatarFontes:
         https://wiki.python.org.br/CoresNoTerminal
     """
     @staticmethod
-    def amarelo(mensagem):
-        return f'\033[1;33m{mensagem}\033[0;0m'
+    def yellow(message):
+        return f'\033[1;33m{message}\033[0;0m'
 
     @staticmethod
-    def verde(mensagem):
-        return f'\033[1;32m{mensagem}\033[0;0m'
+    def green(message):
+        return f'\033[1;32m{message}\033[0;0m'
 
     @staticmethod
-    def vermelho(mensagem):
-        return f'\033[1;31m{mensagem}\033[0;0m'
+    def red(message):
+        return f'\033[1;31m{message}\033[0;0m'
 
     @staticmethod
-    def negrito(mensagem):
-        return f'\033[;1m{mensagem}\033[0;0m'
+    def bold(message):
+        return f'\033[;1m{message}\033[0;0m'

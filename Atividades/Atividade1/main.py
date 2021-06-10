@@ -8,13 +8,13 @@ Construir uma função para imprimir um dos produtos da lista e uma função par
 """
 
 # Imports
-from ClassesAuxiliares.Auxiliares import Auxiliares
-from ClassesAuxiliares.FormatarFontes import FormatarFontes
-from ClassesAuxiliares.Mensagens import Mensagens
+from ClassesAuxiliares.AuxMethods import AuxMethods
+from ClassesAuxiliares.FormatFonts import FormatFonts
+from ClassesAuxiliares.Messages import Messages
 
-aux = Auxiliares()
-fonte = FormatarFontes()
-msg = Mensagens()
+aux = AuxMethods()
+fonte = FormatFonts()
+msg = Messages()
 
 # Variáveis globais
 lista_produtos = ['ARROZ', 'FEIJAO', 'PAO', 'CARNE', 'FRANGO', 'BANANA', 'ALFACE']
@@ -29,29 +29,29 @@ REMOVER = 'REMOÇÃO DE PRODUTO'
 
 # Métodos referentes as opções do menu
 def menu(desc_menu):
-    aux.limpa_tela_menu(desc_menu)
+    aux.clear_screen_menu(desc_menu)
 
     return input(f'''
-    {fonte.verde('0.')} Finalizar o programa
-    {fonte.verde('1.')} Imprimir um produto específico
-    {fonte.verde('2.')} Remover um produto específico
+    {fonte.green('0.')} Finalizar o programa
+    {fonte.green('1.')} Imprimir um produto específico
+    {fonte.green('2.')} Remover um produto específico
 
 Escolha a opção desejada: ''')
 
 
 def else_produto_invalido(produto):
-    aux.print_mensagem(msg.mensagem_erro(f'O produto "{produto}" não está cadastrado.'))
-    msg.operacao_cancelada()
+    aux.print_message(msg.error_message(f'O produto "{produto}" não está cadastrado.'))
+    msg.operation_canceled()
 
 
 def exibir_produtos_decidir_acao(descricao_menu, acao):
-    aux.limpa_tela_menu(descricao_menu)
+    aux.clear_screen_menu(descricao_menu)
 
-    aux.print_mensagem('Produtos cadastrados:')
+    aux.print_message('Produtos cadastrados:')
     for i in lista_produtos:
         print(f'    {i}')
 
-    aux.inserir_nova_linha()
+    aux.insert_line()
     produto = aux.input_upper(f'Informe o nome do Produto que você deseja {acao}: ')
     if IMPRIMIR in descricao_menu:
         selecionar_produto(produto)
@@ -60,21 +60,21 @@ def exibir_produtos_decidir_acao(descricao_menu, acao):
 
 
 def selecionar_produto(produto):
-    aux.limpa_tela_menu(IMPRIMIR)
+    aux.clear_screen_menu(IMPRIMIR)
 
     if produto in lista_produtos:
         produto_selecionado = lista_produtos.index(produto)
-        aux.print_mensagem(f'   {fonte.verde("Nome do produto:")}  {lista_produtos[produto_selecionado]}\n'
-                           f'   {fonte.verde("Preço do produto:")} R$ {lista_precos[produto_selecionado]}\n'
-                           f'   {fonte.verde("Quantidade:")}       {lista_quantidades[produto_selecionado]}')
+        aux.print_message(f'   {fonte.green("Nome do produto:")}  {lista_produtos[produto_selecionado]}\n'
+                           f'   {fonte.green("Preço do produto:")} R$ {lista_precos[produto_selecionado]}\n'
+                           f'   {fonte.green("Quantidade:")}       {lista_quantidades[produto_selecionado]}')
     else:
         else_produto_invalido(produto)
 
-    aux.pressionar_enter()
+    aux.press_enter()
 
 
 def validar_produto(produto):
-    aux.limpa_tela_menu(REMOVER)
+    aux.clear_screen_menu(REMOVER)
 
     if produto in lista_produtos:
         produto_selecionado = lista_produtos.index(produto)
@@ -82,11 +82,11 @@ def validar_produto(produto):
         lista_precos.pop(produto_selecionado)
         lista_quantidades.pop(produto_selecionado)
 
-        aux.print_mensagem(msg.mensagem_sucesso('O produto foi removido da lista.'))
+        aux.print_message(msg.success_message('O produto foi removido da lista.'))
     else:
         else_produto_invalido(produto)
 
-    aux.pressionar_enter()
+    aux.press_enter()
 
 
 # Programa
@@ -94,11 +94,11 @@ while True:
     opcao = menu(MENU)
 
     if opcao == '0':
-        aux.finalizar_programa(MENU)
+        aux.finish_program(MENU)
         break
     elif opcao == '1':
         exibir_produtos_decidir_acao(IMPRIMIR, 'imprimir')
     elif opcao == '2':
         exibir_produtos_decidir_acao(REMOVER, 'remover')
     else:
-        aux.opcao_invalida(MENU)
+        aux.invalid_option(MENU)

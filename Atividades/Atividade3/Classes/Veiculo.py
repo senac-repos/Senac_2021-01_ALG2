@@ -1,6 +1,6 @@
-from ClassesAuxiliares.FormatarFontes import FormatarFontes
+from ClassesAuxiliares.FormatFonts import FormatFonts
 
-fonte = FormatarFontes()
+fonte = FormatFonts()
 
 
 class Veiculo:
@@ -11,10 +11,10 @@ class Veiculo:
         self.velocidade = 0
 
     def imprimir_informacoes(self):
-        print(f'    {fonte.verde("Marca do veículo:")} {self.marca}\n'
-              f'    {fonte.verde("Quantidade de rodas:")} {self.qtd_rodas}\n'
-              f'    {fonte.verde("Modelo:")} {self.modelo}\n'
-              f'    {fonte.verde("Velocidade:")} {self.velocidade}')
+        print(f'    {fonte.green("Marca do veículo:")} {self.marca}\n'
+              f'    {fonte.green("Quantidade de rodas:")} {self.qtd_rodas}\n'
+              f'    {fonte.green("Modelo:")} {self.modelo}\n'
+              f'    {fonte.green("Velocidade:")} {self.velocidade}')
 
     def acelerar(self, velocidade):
         self.velocidade += velocidade
